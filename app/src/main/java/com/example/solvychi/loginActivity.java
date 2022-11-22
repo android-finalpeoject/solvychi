@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -102,7 +101,7 @@ public class loginActivity extends AppCompatActivity {
                             toast.show();
                         }
                         // empty pwd
-                        else if (pass.isEmpty()) ;
+                        else if (pass.isEmpty())
                         {
 
                             pwd.setBackgroundResource(R.drawable.error_inputs);
