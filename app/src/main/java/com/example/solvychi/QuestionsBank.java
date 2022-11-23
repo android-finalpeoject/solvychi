@@ -4,30 +4,105 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuestionsBank {
-    private static List<QuestionsList> LevelQuestions() {
+    private static List<QuestionsList> Level1Questions() {
         final List<QuestionsList> questionsListLists = new ArrayList<>();
         // create object of QuestionList class and pass a question along with options and answers
-        final QuestionsList question1 = new QuestionsList("What’s your problem?","Is there a problem?What is the problem?How big is the problem?", R.drawable.step1,R.drawable.bgstep1 );
-        final QuestionsList question2 = new QuestionsList("Brainstorm","Come up with solutions and ideas to solve the problem",R.drawable.step2,R.drawable.bgstep2 );
-        final QuestionsList question3 = new QuestionsList("Choose","Pick a solution that you think best solves the problem", R.drawable.step3,R.drawable.bgstep3 );
-        final QuestionsList question4 = new QuestionsList("Do it !","Try out the agreed upon solution", R.drawable.step4,R.drawable.bgstep4 );
+        final QuestionsList question1 = new QuestionsList("213", "216", "344", "785", "344", "", R.drawable.step1);
+        final QuestionsList question2 = new QuestionsList("213", "216", "344", "785", "344", "", R.drawable.step2);
+        final QuestionsList question3 = new QuestionsList("213", "216", "344", "785", "344", "", R.drawable.step3);
+        final QuestionsList question4 = new QuestionsList("213", "216", "344", "785", "344", "", R.drawable.step4);
+        final QuestionsList question5 = new QuestionsList("213", "216", "344", "785", "344", "", R.drawable.step1);
+        final QuestionsList question6 = new QuestionsList("213", "216", "344", "785", "344", "", R.drawable.step2);
         //add all the questions to the ListQuestion
         questionsListLists.add(question1);
         questionsListLists.add(question2);
         questionsListLists.add(question3);
         questionsListLists.add(question4);
+        questionsListLists.add(question5);
+        questionsListLists.add(question6);
         return questionsListLists;
 
     }
 
     ;
 
+    private static List<QuestionsList> Level2Questions() {
+        final List<QuestionsList> questionsListLists = new ArrayList<>();
+        // create object of QuestionList class and pass a question along with options and answers
+        final QuestionsList question1 = new QuestionsList("213", "216", "344", "785", "344", "", R.drawable.step1);
+        final QuestionsList question2 = new QuestionsList("213", "216", "344", "785", "344", "", R.drawable.step2);
+        final QuestionsList question3 = new QuestionsList("213", "216", "344", "785", "344", "", R.drawable.step3);
+        final QuestionsList question4 = new QuestionsList("213", "216", "344", "785", "344", "", R.drawable.step4);
+        final QuestionsList question5 = new QuestionsList("213", "216", "344", "785", "344", "", R.drawable.step1);
+        final QuestionsList question6 = new QuestionsList("213", "216", "344", "785", "344", "", R.drawable.step2);
+        //add all the questions to the ListQuestion
+        questionsListLists.add(question1);
+        questionsListLists.add(question2);
+        questionsListLists.add(question3);
+        questionsListLists.add(question4);
+        questionsListLists.add(question5);
+        questionsListLists.add(question6);
+        return questionsListLists;
+
+    }
+
+    ;
+
+    private static List<QuestionsList> Level3Questions() {
+        final List<QuestionsList> questionsListLists = new ArrayList<>();
+        // create object of QuestionList class and pass a question along with options and answers
+        final QuestionsList question1 = new QuestionsList("213", "216", "344", "785", "344", "", R.drawable.step1);
+        final QuestionsList question2 = new QuestionsList("213", "216", "344", "785", "344", "", R.drawable.step2);
+        final QuestionsList question3 = new QuestionsList("213", "216", "344", "785", "344", "", R.drawable.step3);
+        final QuestionsList question4 = new QuestionsList("213", "216", "344", "785", "344", "", R.drawable.step4);
+        final QuestionsList question5 = new QuestionsList("213", "216", "344", "785", "344", "", R.drawable.step1);
+        final QuestionsList question6 = new QuestionsList("213", "216", "344", "785", "344", "", R.drawable.step2);
+        //add all the questions to the ListQuestion
+        questionsListLists.add(question1);
+        questionsListLists.add(question2);
+        questionsListLists.add(question3);
+        questionsListLists.add(question4);
+        questionsListLists.add(question5);
+        questionsListLists.add(question6);
+        return questionsListLists;
+
+    }
+
+    ;
+
+    private static List<QuestionsList> Level4Questions() {
+        final List<QuestionsList> questionsListLists = new ArrayList<>();
+        // create object of QuestionList class and pass a question along with options and answers
+        final QuestionsList question1 = new QuestionsList("213", "216", "344", "785", "344", "", R.drawable.step1);
+        final QuestionsList question2 = new QuestionsList("213", "216", "344", "785", "344", "", R.drawable.step2);
+        final QuestionsList question3 = new QuestionsList("213", "216", "344", "785", "344", "", R.drawable.step3);
+        final QuestionsList question4 = new QuestionsList("213", "216", "344", "785", "344", "", R.drawable.step4);
+        final QuestionsList question5 = new QuestionsList("213", "216", "344", "785", "344", "", R.drawable.step1);
+        final QuestionsList question6 = new QuestionsList("213", "216", "344", "785", "344", "", R.drawable.step2);
+        //add all the questions to the ListQuestion
+        questionsListLists.add(question1);
+        questionsListLists.add(question2);
+        questionsListLists.add(question3);
+        questionsListLists.add(question4);
+        questionsListLists.add(question5);
+        questionsListLists.add(question6);
+        return questionsListLists;
+
+    }
 
 
-    public static List<QuestionsList> getQuestions() {
+    public static List<QuestionsList> getQuestions(String selectedLevelName) {
+        switch (selectedLevelName) {
+            case "level1":
+                return Level1Questions();
+            case "level2":
+                return Level2Questions();
+            case "level3":
+                return Level3Questions();
+            default:
+                return Level4Questions();
 
-                return LevelQuestions();
-
+        }
 
     }
 }

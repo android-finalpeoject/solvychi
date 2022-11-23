@@ -16,9 +16,10 @@ public class NextActivity extends AppCompatActivity {
     private TextView texte2;
     private ImageView image;
     private RelativeLayout layout;
+    private ImageView steps;
     private ImageView nextBtn;
     private int currentPosition = 0;
-    private List<QuestionsList> questionsLists ;
+    private List<BoarderList> questionsLists ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,10 +28,11 @@ public class NextActivity extends AppCompatActivity {
         texte = findViewById(R.id.firsttext);
         texte2 = findViewById(R.id.secondtext);
         final ImageView backBtn = findViewById(R.id.next);
+        steps = findViewById(R.id.steps);
         image = findViewById(R.id.firstimage);
         nextBtn =findViewById(R.id.back);
         layout = findViewById(R.id.viewnext);
-        questionsLists = QuestionsBank.getQuestions();
+        questionsLists = BoarderBank.getQuestions();
         image.setImageResource(questionsLists.get(0).getImage());
         texte.setText(questionsLists.get(0).getTexte());
         nextBtn.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +58,8 @@ public class NextActivity extends AppCompatActivity {
                     texte.setText(questionsLists.get(currentPosition).getTexte());
                     texte2.setText(questionsLists.get(currentPosition).getTexte2());
                     layout.setBackgroundResource(questionsLists.get(currentPosition).getBackground());
+                    steps.setImageResource(questionsLists.get(currentPosition).getSteps());
+
                 }
 
             }
@@ -72,6 +76,8 @@ public class NextActivity extends AppCompatActivity {
             texte.setText(questionsLists.get(currentPosition).getTexte());
             texte2.setText(questionsLists.get(currentPosition).getTexte2());
             layout.setBackgroundResource(questionsLists.get(currentPosition).getBackground());
+            steps.setImageResource(questionsLists.get(currentPosition).getSteps());
+
         }
         else{
             Intent intent = new Intent(NextActivity.this,finishactivity.class);

@@ -1,6 +1,7 @@
 package com.example.solvychi;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
+import android.view.View;
 import android.widget.TextView;
 
 public class finishactivity extends AppCompatActivity {
@@ -19,6 +21,7 @@ public class finishactivity extends AppCompatActivity {
         getSupportActionBar().hide();
         //Change the color of hero
         TextView textView = findViewById(R.id.lovetolearn);
+        AppCompatButton btnsign = findViewById(R.id.signin);
 
 
         String text = "Love to Learn Problem solving from SOLVYCHI!";
@@ -40,8 +43,19 @@ public class finishactivity extends AppCompatActivity {
 
         textView.setText(spannableString);
         //end changing the color of here !
+        btnsign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                Intent intent = new Intent(finishactivity.this, QuizActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
+
+
+
 
 
 
