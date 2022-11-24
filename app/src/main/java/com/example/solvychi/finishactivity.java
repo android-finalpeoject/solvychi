@@ -47,7 +47,7 @@ public class finishactivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(finishactivity.this, QuizActivity.class);
+                Intent intent = new Intent(finishactivity.this, signupActivity.class);
                 startActivity(intent);
                 finish();
             }

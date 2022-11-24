@@ -9,4 +9,13 @@
     <color name="white">#FFFFFFFF</color>
     <color name="white_transparent">#CCCCCCCC</color>
     <color name="swhite">#99FFFFFF</color>
+    <color name="blue">#234d7d</color>
+    <color name="Lblue">#8DBCF1</color>
+    <color name="pink">#ffc2c7</color>
+    <color name="lgreen">#b3ebc4</color>
+    <color name="grey">#888A89</color>
+    <color name="Dgrey">#676767</color>
+    <color name="Lwhite">#B4FFFFFF</color>
+
+    <color name="dgreen">#b3ebc4</color>
 </resources>
