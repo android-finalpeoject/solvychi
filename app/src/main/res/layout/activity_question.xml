@@ -20,16 +20,16 @@
             android:layout_marginStart="20dp"
             android:src="@drawable/back1"
             />
+
         <TextView
             android:id="@+id/levelname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="Selcted Level "
-            android:textStyle="bold"
             android:textColor="@color/white"
             android:textSize="20sp"
-            />
+            android:textStyle="bold" />
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

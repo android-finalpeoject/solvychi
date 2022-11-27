@@ -8,12 +8,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class QuizActivity extends AppCompatActivity {
     private String selectedLevelName;
     private AppCompatButton btnlevel1, btnlevel2, btnlevel3, btnlevel4 ;
-
+    private TextView user;
+    private String userName, email,pwd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,8 +31,15 @@ public class QuizActivity extends AppCompatActivity {
         btnlevel3 =findViewById(R.id.btnlevel3);
         btnlevel4 =findViewById(R.id.btnlevel4);
 
+        // ---------------get user data---------
+        user = findViewById(R.id.Nom_user);
+        Bundle userData = getIntent().getExtras();
+        userName = userData.getString("name");
+        email = userData.getString("email");
+        pwd = userData.getString("name");
 
-
+        //-----------set userName---------------
+        user.setText(userName);
         level1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -105,7 +114,7 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 selectedLevelName = "level3";
-                Intent intent = new Intent(QuizActivity.this, questionActivity.class);
+                Intent intent = new Intent(QuizActivity.this, GameActivity.class);
                 intent.putExtra("selectedLevel", selectedLevelName);
                 startActivity(intent);
                 finish();
@@ -116,7 +125,7 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 selectedLevelName = "level4";
-                Intent intent = new Intent(QuizActivity.this, questionActivity.class);
+                Intent intent = new Intent(QuizActivity.this, GameActivity.class);
                 intent.putExtra("selectedLevel", selectedLevelName);
                 startActivity(intent);
                 finish();

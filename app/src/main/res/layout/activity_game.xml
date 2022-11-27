@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/quiz_back"
+    android:orientation="vertical"
+    tools:context=".GameActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#2998A7"
+        >
+    <ImageView
+        android:id="@+id/backBtn"
+        android:layout_width="35dp"
+        android:layout_height="40dp"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/back1"
+        />
+
+        <TextView
+            android:id="@+id/levelname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Selcted Level "
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        >
+
+    </LinearLayout>
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/answers"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+       android:textStyle="bold"
+        android:textSize="20dp"
+        android:elevation="1dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:text="1/4"
+        android:textColor="#FFFFFF"
+        />
+
+    <ImageView
+
+            android:id="@+id/quiz_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="6dp"
+            android:textSize="26sp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/q1"
+            android:layout_gravity="center"
+            android:textColor="@color/blue"/>
+
+
+    <EditText
+        android:id="@+id/userAnswer"
+        android:layout_width="200dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/dark_blue"
+        android:clickable="false"
+        android:focusable="false"
+        android:gravity="center"
+        android:elevation="35dp"
+        android:padding="10dp"
+        android:textColor="@color/blue"
+        android:textSize="32sp"
+        tools:ignore="SpeakableTextPresentCheck" />
+    <TextView
+        android:id="@+id/textTitle"
+        android:textSize="20sp"
+        android:textColor="#e85c5d"
+        android:text="Find the link between the Images"
+        android:layout_marginRight="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_width="match_parent"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="20dp"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:id="@+id/layoutParent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       android:gravity="center"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/nextBtn"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginEnd="0dp"
+        android:textColor="@color/white"
+        android:background="@drawable/round_back_green20"
+        android:text="Next"/>
+</LinearLayout>

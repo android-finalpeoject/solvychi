@@ -1,14 +1,10 @@
 package com.example.solvychi;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Patterns;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,6 +30,7 @@ public class signupActivity extends AppCompatActivity {
     private TextView login;
     private Button signUp;
     private ImageView girl;
+    public final Boolean signed = false;
     // google regestration
 //    GoogleSignInOptions gso;
 //    GoogleSignInClient gsc;
@@ -42,23 +39,23 @@ public class signupActivity extends AppCompatActivity {
     private ImageButton fb;
     //    String []signUpData;
 // implement the TextWatcher callback listener
-    private TextWatcher textWatcher = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-            girl.setImageResource(R.drawable.close);
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-            girl.setImageResource(R.drawable.close);
-
-        }
-    };
+//    private TextWatcher textWatcher = new TextWatcher() {
+//        @Override
+//        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//        }
+//
+//        @Override
+//        public void onTextChanged(CharSequence s, int start, int before, int count) {
+//            girl.setImageResource(R.drawable.close);
+//        }
+//
+//        @Override
+//        public void afterTextChanged(Editable s) {
+//            girl.setImageResource(R.drawable.close);
+//
+//        }
+//    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,10 +75,12 @@ public class signupActivity extends AppCompatActivity {
         fb = findViewById(R.id.fb);
         //login Btn
         login = findViewById(R.id.login);
+        //==================================== DB LINKING ========================================//
+        DBHelper DB = new DBHelper(this);
         //========================change the girl image to closing eyes
 
 //        //==================reset the image================================
-        pwd.addTextChangedListener(textWatcher);
+//        pwd.addTextChangedListener(textWatcher);
         // ================================set event listener on the sign up btn
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,17 +98,13 @@ public class signupActivity extends AppCompatActivity {
                 // to find matching between given username
                 // and regular expression.
                 Matcher m = p.matcher(user);
-                if(user.isEmpty())
+                if(user.isEmpty() && !m.matches())
                 {
                     name.setBackgroundResource(R.drawable.error_inputs);
                     Toast toast = Toast.makeText(getApplicationContext(), "please enter your name!", Toast.LENGTH_SHORT);
                     toast.show();
                 }
-                else if (!m.matches()) {
-                    name.setBackgroundResource(R.drawable.error_inputs);
-                    Toast toast = Toast.makeText(getApplicationContext(), "please enter valid name!", Toast.LENGTH_SHORT);
-                    toast.show();
-                } else {
+                else {
                     // ==============check the email ==========================
                     if (!mail.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(mail).matches()) {
                         //==================check the password================
@@ -120,13 +115,38 @@ public class signupActivity extends AppCompatActivity {
                             toast.show();
                         }
                         else {
+                            // =============check if the user exists already by checking his email:
+                            Boolean checkuser = DB.checkemail(mail);
                             // affect inputs values to the data bundle
-                            Bundle data = new Bundle();
-                            data.putString("name", name.getText().toString());
-                            data.putString("email", email.getText().toString());
-                            data.putString("pwd", pwd.getText().toString());
-                            home.putExtras(data);
-                            startActivity(home);
+                            if(checkuser == false)
+                            {
+                                // check if the user got inserted in db
+                                Boolean insert = DB.insertData(user, mail, pass);
+                                if(insert== true)
+                                {
+                                    Bundle data = new Bundle();
+                                    data.putString("name", user);
+                                    data.putString("email", mail);
+                                    data.putString("pwd", pass);
+                                    Toast toast = Toast.makeText(getApplicationContext(), "Welcome "+user+" 🤩", Toast.LENGTH_LONG);
+                                    toast.show();
+                                    home.putExtras(data);
+                                    startActivity(home);
+                                }
+                                else
+                                {
+                                    Toast toast = Toast.makeText(getApplicationContext(), "try later!", Toast.LENGTH_SHORT);
+                                    toast.show();
+                                }
+
+                            }
+                            //=============== user already exists ==============================
+                            else
+                            {
+                                Toast toast = Toast.makeText(getApplicationContext(), "user already exists!", Toast.LENGTH_SHORT);
+                                toast.show();
+                            }
+
                         }
                     }
                     else {

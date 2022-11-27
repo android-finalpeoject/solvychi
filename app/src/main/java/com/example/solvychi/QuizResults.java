@@ -7,6 +7,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class QuizResults extends AppCompatActivity {
@@ -20,6 +21,7 @@ public class QuizResults extends AppCompatActivity {
         final AppCompatButton startnewBtn = findViewById(R.id.btnstartnext);
         final TextView correctAnswer = findViewById(R.id.correctAnswers);
         final TextView incorrectAnswer = findViewById(R.id.incorrectAnswers);
+        final ImageView back = findViewById(R.id.backBtn);
         final int getCorrectAnsewrs = getIntent().getIntExtra("correct",0);
         final int getIncorrectAnsewrs = getIntent().getIntExtra("incorrect",0);
         correctAnswer.setText("Correct answers :"+String.valueOf(getCorrectAnsewrs));
@@ -35,7 +37,12 @@ public class QuizResults extends AppCompatActivity {
 
 
 
-
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              onBackPressed();
+            }
+        });
 
     }
     @Override

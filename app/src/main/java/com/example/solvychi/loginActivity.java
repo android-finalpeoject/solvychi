@@ -27,23 +27,23 @@ public class loginActivity extends AppCompatActivity {
     private ImageView girl;
     private String [] data ={"chaimae@gmail.com","chaimae"};
     // implement the TextWatcher callback listener
-    private TextWatcher textWatcher = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-            girl.setImageResource(R.drawable.close);
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-            girl.setImageResource(R.drawable.girl);
-
-        }
-    };
+//    private TextWatcher textWatcher = new TextWatcher() {
+//        @Override
+//        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//        }
+//
+//        @Override
+//        public void onTextChanged(CharSequence s, int start, int before, int count) {
+//            girl.setImageResource(R.drawable.close);
+//        }
+//
+//        @Override
+//        public void afterTextChanged(Editable s) {
+//            girl.setImageResource(R.drawable.girl);
+//
+//        }
+//    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +61,7 @@ public class loginActivity extends AppCompatActivity {
         sign = findViewById(R.id.sign);
         //========================change the girl image to closing eyes
         //        //==================reset the image================================
-        pwd.addTextChangedListener(textWatcher);
+//        pwd.addTextChangedListener(textWatcher);
 
         // set event listener on the sign up btn
         loginBtn.setOnClickListener(new View.OnClickListener() {
