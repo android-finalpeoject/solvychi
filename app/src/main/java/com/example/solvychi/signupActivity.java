@@ -85,7 +85,6 @@ public class signupActivity extends AppCompatActivity {
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent home = new Intent(getApplicationContext(),QuizActivity.class);
                 //------NAME AND EMAIL VALIDATION
                 String  mail= email.getText().toString();
                 String user = name.getText().toString();
@@ -130,8 +129,10 @@ public class signupActivity extends AppCompatActivity {
                                     data.putString("pwd", pass);
                                     Toast toast = Toast.makeText(getApplicationContext(), "Welcome "+user+" 🤩", Toast.LENGTH_LONG);
                                     toast.show();
+                                    Intent home = new Intent(getApplicationContext(),loginActivity.class);
                                     home.putExtras(data);
                                     startActivity(home);
+                                    finish();
                                 }
                                 else
                                 {

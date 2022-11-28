@@ -25,7 +25,8 @@ public class loginActivity extends AppCompatActivity {
     private ImageButton fb;
     private CheckBox remember;
     private ImageView girl;
-    private String [] data ={"chaimae@gmail.com","chaimae"};
+    DBHelper DB;
+
     // implement the TextWatcher callback listener
 //    private TextWatcher textWatcher = new TextWatcher() {
 //        @Override
@@ -53,6 +54,7 @@ public class loginActivity extends AppCompatActivity {
         // get name and email
         email = findViewById(R.id.email);
         pwd = findViewById(R.id.pwd);
+        DB = new DBHelper(this);
         //get buttons
         loginBtn = findViewById(R.id.loginBtn);
         google = findViewById(R.id.google);
@@ -72,24 +74,24 @@ public class loginActivity extends AppCompatActivity {
                 String pass = pwd.getText().toString();
 
 
-                if(mail.equals(data[0])  && pass.equals(data[1]) )
+                if(DB.checkemailpassword(mail,pass))
                 {
                     Toast toast = Toast.makeText(getApplicationContext(),"Let's go🤩!",Toast.LENGTH_SHORT);
                     toast.show();
-                    Intent home = new Intent(getApplicationContext(),QuizActivity.class);
-                    startActivity(home);
+                    Intent loginAct = new Intent(getApplicationContext(),QuizActivity.class);
+                    startActivity(loginAct);
                     finish();
                 }
                 //==================WRONG============
                 // wrong email
                 else {
-                    if (!mail.equals(data[0]) && !mail.isEmpty()) {
+                    if (!DB.checkemail(mail) && !mail.isEmpty()) {
                         email.setBackgroundResource(R.drawable.error_inputs);
                         Toast toast = Toast.makeText(getApplicationContext(), "wrong email!", Toast.LENGTH_SHORT);
                         toast.show();
                     }
                     // wrong pwd
-                    else if (!pass.equals(data[1]) && !pass.isEmpty()) {
+                    else if (pass != DB.checkpassword(mail) && !pass.isEmpty()) {
                         pwd.setBackgroundResource(R.drawable.error_inputs);
                         Toast toast = Toast.makeText(getApplicationContext(), "wrong password!", Toast.LENGTH_SHORT);
                         toast.show();
