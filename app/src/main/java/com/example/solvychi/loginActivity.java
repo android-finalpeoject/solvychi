@@ -28,7 +28,6 @@ public class loginActivity extends AppCompatActivity {
     DBHelper DB;
 
     private final String type = "login";
-    private String [] data ={"chaimae@gmail.com","chaimae"};
     // implement the TextWatcher callback listener
 //    private TextWatcher textWatcher = new TextWatcher() {
 //        @Override
@@ -102,11 +101,7 @@ public class loginActivity extends AppCompatActivity {
                         toast.show();
                     }
                     // wrong pwd
-                    else if (pass != DB.checkpassword(mail) && !pass.isEmpty()) {
-                        pwd.setBackgroundResource(R.drawable.error_inputs);
-                        Toast toast = Toast.makeText(getApplicationContext(), "wrong password!", Toast.LENGTH_SHORT);
-                        toast.show();
-                    }//===========EMPTY=================
+                    //===========EMPTY=================
                     // empty email
                     else {
                         if (mail.isEmpty()) {
@@ -115,11 +110,16 @@ public class loginActivity extends AppCompatActivity {
                             toast.show();
                         }
                         // empty pwd
-                        else if (pass.isEmpty()) ;
+                        else if (pass.isEmpty())
                         {
 
                             pwd.setBackgroundResource(R.drawable.error_inputs);
                             Toast toast = Toast.makeText(getApplicationContext(), "empty password!", Toast.LENGTH_SHORT);
+                            toast.show();
+                        }
+                        else {
+                            pwd.setBackgroundResource(R.drawable.error_inputs);
+                            Toast toast = Toast.makeText(getApplicationContext(), "wrong password!", Toast.LENGTH_SHORT);
                             toast.show();
                         }
                     }
