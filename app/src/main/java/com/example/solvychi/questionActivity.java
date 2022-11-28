@@ -23,6 +23,7 @@ public class questionActivity extends AppCompatActivity {
     private AppCompatButton nextBtn;
     private List<QuestionsList> questionsLists ;
     private int currentQuestionPosition = 0;
+    private ImageView backBtn;
     private String selectedOptionByUser="";
 
     @Override
@@ -31,7 +32,7 @@ public class questionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_question);
         getSupportActionBar().hide();
 
-        final ImageView backBtn = findViewById(R.id.backBtn);
+          backBtn = findViewById(R.id.backBtn);
         questions=findViewById(R.id.questions);
         question=findViewById(R.id.question);
         option1 = findViewById(R.id.option1);
@@ -136,7 +137,7 @@ public class questionActivity extends AppCompatActivity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-                startActivity(new Intent(questionActivity.this, QuizActivity.class));
+                startActivity(new Intent(getApplicationContext(), QuizActivity.class));
                 finish();
             }
         });

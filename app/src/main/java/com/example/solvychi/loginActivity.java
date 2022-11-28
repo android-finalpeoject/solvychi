@@ -27,6 +27,8 @@ public class loginActivity extends AppCompatActivity {
     private ImageView girl;
     DBHelper DB;
 
+    private final String type = "login";
+    private String [] data ={"chaimae@gmail.com","chaimae"};
     // implement the TextWatcher callback listener
 //    private TextWatcher textWatcher = new TextWatcher() {
 //        @Override
@@ -61,11 +63,11 @@ public class loginActivity extends AppCompatActivity {
         fb = findViewById(R.id.fb);
         //sign up Btn
         sign = findViewById(R.id.sign);
-        //========================change the girl image to closing eyes
-        //        //==================reset the image================================
+        // get check box
+        remember = findViewById(R.id.remember);
 //        pwd.addTextChangedListener(textWatcher);
 
-        // set event listener on the sign up btn
+        // ============================set event listener on the sign up btn=====================
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,6 +82,15 @@ public class loginActivity extends AppCompatActivity {
                     toast.show();
                     Intent loginAct = new Intent(getApplicationContext(),QuizActivity.class);
                     startActivity(loginAct);
+                    Intent home = new Intent(getApplicationContext(),QuizActivity.class);
+                    Bundle B = new Bundle();
+
+                    B.putString("email", mail);
+                    B.putString("pwd", pass);
+                    B.putString("type", type);
+                    home.putExtras(B);
+                    startActivity(home);
+
                     finish();
                 }
                 //==================WRONG============

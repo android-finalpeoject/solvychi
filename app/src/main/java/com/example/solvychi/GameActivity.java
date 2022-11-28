@@ -31,6 +31,8 @@ public class GameActivity extends AppCompatActivity {
     private String userAns="";
     Animation smallbigforth;
     private String [] keys;
+    private ImageView backBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -40,7 +42,7 @@ public class GameActivity extends AppCompatActivity {
 //        //==========animation========================
         smallbigforth = AnimationUtils.loadAnimation(this, R.anim.smallbigforth);
 //        //==============get our activity elements===============
-        final ImageView backBtn = findViewById(R.id.backBtn);
+        backBtn = findViewById(R.id.backBtn);
         answers = findViewById(R.id.answers);
         question = findViewById(R.id.quiz_image);
         userAnswer = findViewById(R.id.userAnswer);

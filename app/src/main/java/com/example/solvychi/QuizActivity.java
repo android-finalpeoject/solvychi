@@ -30,16 +30,20 @@ public class QuizActivity extends AppCompatActivity {
         btnlevel2 =findViewById(R.id.btnlevel2);
         btnlevel3 =findViewById(R.id.btnlevel3);
         btnlevel4 =findViewById(R.id.btnlevel4);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        // ---------------get user data from sign up---------
 
-        // ---------------get user data---------
         user = findViewById(R.id.Nom_user);
         Bundle userData = getIntent().getExtras();
-        userName = userData.getString("name");
+        String ActivityType = userData.getString("type");
+        if(ActivityType.equals("signUp"))
+        {
+            userName = userData.getString("name");
+            user.setText(userName);
+        }
         email = userData.getString("email");
         pwd = userData.getString("name");
 
-        //-----------set userName---------------
-        user.setText(userName);
         level1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,7 +99,7 @@ public class QuizActivity extends AppCompatActivity {
                 Intent intent = new Intent(QuizActivity.this, questionActivity.class);
                     intent.putExtra("selectedLevel", selectedLevelName);
                     startActivity(intent);
-                    finish();
+//                    finish();
 
             }
         });
@@ -106,7 +110,7 @@ public class QuizActivity extends AppCompatActivity {
                 Intent intent = new Intent(QuizActivity.this, questionActivity.class);
                     intent.putExtra("selectedLevel", selectedLevelName);
                     startActivity(intent);
-                    finish();
+//                    finish();
                 }
 
         });
@@ -117,7 +121,7 @@ public class QuizActivity extends AppCompatActivity {
                 Intent intent = new Intent(QuizActivity.this, GameActivity.class);
                 intent.putExtra("selectedLevel", selectedLevelName);
                 startActivity(intent);
-                finish();
+//                finish();
             }
 
         });
@@ -128,7 +132,7 @@ public class QuizActivity extends AppCompatActivity {
                 Intent intent = new Intent(QuizActivity.this, GameActivity.class);
                 intent.putExtra("selectedLevel", selectedLevelName);
                 startActivity(intent);
-                finish();
+//                finish();
             }
 
         });
