@@ -31,6 +31,8 @@ public class signupActivity extends AppCompatActivity {
     private Button signUp;
     private ImageView girl;
     public final Boolean signed = false;
+    private final String type = "signUp";
+
     // google regestration
 //    GoogleSignInOptions gso;
 //    GoogleSignInClient gsc;
@@ -128,10 +130,12 @@ public class signupActivity extends AppCompatActivity {
                                     data.putString("name", user);
                                     data.putString("email", mail);
                                     data.putString("pwd", pass);
+                                    data.putString("type", type);
                                     Toast toast = Toast.makeText(getApplicationContext(), "Welcome "+user+" 🤩", Toast.LENGTH_LONG);
                                     toast.show();
                                     home.putExtras(data);
                                     startActivity(home);
+                                    finish();
                                 }
                                 else
                                 {
@@ -184,6 +188,7 @@ public class signupActivity extends AppCompatActivity {
                 Intent loginAct = new Intent(getApplicationContext(),loginActivity.class);
 
                 startActivity(loginAct);
+//                finish();
             }
         });
 

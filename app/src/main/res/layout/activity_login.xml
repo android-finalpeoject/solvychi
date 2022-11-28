@@ -55,6 +55,7 @@
             android:layout_width="match_parent"
             android:padding="10dp"
             android:textColor="@color/blue"
+            android:elevation="5dp"
 
             android:layout_height="40dp"
             android:layout_marginLeft="25dp"
@@ -78,7 +79,7 @@
             android:padding="10dp"
             android:layout_height="40dp"
             android:textColor="@color/blue"
-
+            android:elevation="5dp"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="25dp"
@@ -86,7 +87,7 @@
             android:background="@drawable/inputs"
             android:inputType="textPassword"/>
         <CheckBox
-            android:id="@+id/checkBox"
+            android:id="@+id/remember"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
@@ -105,7 +106,7 @@
             android:layout_marginBottom="10dp"
             android:background="@drawable/buttons"
             android:text="LOGIN"
-            android:paddingTop="2dp"
+            android:elevation="10dp"
             android:textColor="@color/white"
             android:textAlignment="center"
             android:textSize="20dp" />
@@ -150,7 +151,7 @@
                 android:layout_margin="10dp"
                 android:adjustViewBounds="true"
                 android:background="@drawable/btn"
-                android:elevation="35dp"
+
                 android:scaleType="centerInside"
 
                 android:src="@drawable/ggl" />
