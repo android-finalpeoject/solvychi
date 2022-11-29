@@ -10,26 +10,30 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String DBNAME = "SignUp.db";
     public DBHelper(Context context)
     {
-        super(context, "SignUp.db", null, 1);
+        super(context, "SignUp.db", null, 2);
     }
     @Override
     public void onCreate(SQLiteDatabase MyDB) {
-        MyDB.execSQL("create Table users (email TEXT primary key ,username TEXT, password TEXT)");
+        MyDB.execSQL("create Table users(email TEXT primary key ,username TEXT, password TEXT,level TEXT)");
+//        MyDB.execSQL("alter Table users add level TEXT");
+
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase MyDB, int i, int i1) {
-        MyDB.execSQL("drop Table if exists users");
+        MyDB.execSQL("alter Table  users add column level TEXT");
 
     }
-    public Boolean insertData(String username, String email, String password)
+    public Boolean insertData(String username, String email, String password,String level)
     {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("username", username);
         contentValues.put("email", email);
         contentValues.put("password", password);
+        contentValues.put("level", level);
+
         long result = MyDB.insert("users",null,contentValues);
         if(result == -1) return false;
         else  return true;
@@ -68,6 +72,23 @@ public class DBHelper extends SQLiteOpenHelper {
             return cursor.getString(0);
         else return null;
     }
-
+    public String fetchUser(String email)
+    {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Cursor cursor = MyDB.rawQuery("Select username from users where email =? ",new String[] {email});
+        cursor.moveToFirst();
+        if(cursor.getCount()>0)
+            return cursor.getString(0);
+        else return null;
+    }
+    public String fetchLevel(String email)
+    {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Cursor cursor = MyDB.rawQuery("Select level from users where email =? ",new String[] {email});
+        cursor.moveToFirst();
+        if(cursor.getCount()>0)
+            return cursor.getString(0);
+        else return null;
+    }
 
 }

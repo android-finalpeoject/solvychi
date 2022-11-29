@@ -30,6 +30,7 @@ public class signupActivity extends AppCompatActivity {
     private TextView login;
     private Button signUp;
     private ImageView girl;
+    private String level="0";
     public final Boolean signed = false;
     private final String type = "signUp";
 
@@ -122,7 +123,7 @@ public class signupActivity extends AppCompatActivity {
                             if(checkuser == false)
                             {
                                 // check if the user got inserted in db
-                                Boolean insert = DB.insertData(user, mail, pass);
+                                Boolean insert = DB.insertData(user, mail, pass,level);
                                 if(insert== true)
                                 {
                                     Bundle data = new Bundle();
@@ -130,9 +131,11 @@ public class signupActivity extends AppCompatActivity {
                                     data.putString("email", mail);
                                     data.putString("pwd", pass);
                                     data.putString("type", type);
+                                    data.putString("level", level);
+
                                     Toast toast = Toast.makeText(getApplicationContext(), "Welcome "+user+" 🤩", Toast.LENGTH_LONG);
                                     toast.show();
-                                    Intent home = new Intent(getApplicationContext(),loginActivity.class);
+                                    Intent home = new Intent(getApplicationContext(),QuizActivity.class);
                                     home.putExtras(data);
                                     startActivity(home);
                                     finish();

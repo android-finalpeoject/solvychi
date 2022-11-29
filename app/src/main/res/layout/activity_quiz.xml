@@ -61,7 +61,7 @@
             android:layout_centerInParent="true"
             android:text="emma"
             android:textColor="@color/white"
-            android:textSize="35sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             />
         <TextView
@@ -70,15 +70,19 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="Level 1"
-            android:textColor="#E1FDF4F4"
-            android:textSize="20sp"
+            android:layout_marginBottom="5dp"
+            android:textColor="#206670"
+            android:textSize="18sp"
             android:textStyle="bold" />
+
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="-80dp"
-                android:layout_marginTop="-20dp"
-                android:src="@drawable/stars"/>
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_gravity="left"
+                android:layout_marginLeft="-140dp"
+                android:layout_marginTop="-30dp"
+                android:src="@drawable/level0" />
+
         </LinearLayout>
 
     </LinearLayout>
@@ -98,8 +102,7 @@
             android:textColor="#D3FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
+
             />
 
     </LinearLayout>
@@ -140,14 +143,15 @@
                 android:textColor="#5E000000"
                 android:textSize="13sp"
                 android:textStyle="bold"/>
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnlevel1"
-                android:layout_marginTop="4dp"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="Start"
+                android:layout_height="48dp"
+                android:layout_marginTop="4dp"
                 android:background="@drawable/button"
-                android:textColor="@color/white"/>
+                android:text="Start"
+                android:textColor="@color/white" />
         </LinearLayout>
 
 
@@ -190,15 +194,16 @@
                 android:textColor="#5E000000"
                 android:textSize="13sp"
                 android:textStyle="bold"/>
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnlevel2"
 
-                android:layout_marginTop="4dp"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="Start"
+                android:layout_height="48dp"
+                android:layout_marginTop="4dp"
                 android:background="@drawable/button"
-                android:textColor="@color/white"/>
+                android:text="Start"
+                android:textColor="@color/white" />
         </LinearLayout>
 
 
@@ -242,14 +247,15 @@
                 android:textColor="#5E000000"
                 android:textSize="13sp"
                 android:textStyle="bold"/>
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnlevel3"
-                android:layout_marginTop="4dp"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="Start"
+                android:layout_height="48dp"
+                android:layout_marginTop="4dp"
                 android:background="@drawable/button"
-                android:textColor="@color/white"/>
+                android:text="Start"
+                android:textColor="@color/white" />
         </LinearLayout>
     </LinearLayout>
 

@@ -14,7 +14,7 @@ import android.widget.Toast;
 public class QuizActivity extends AppCompatActivity {
     private String selectedLevelName;
     private AppCompatButton btnlevel1, btnlevel2, btnlevel3, btnlevel4 ;
-    private TextView user;
+    private TextView user, level;
     private String userName, email,pwd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,20 +30,32 @@ public class QuizActivity extends AppCompatActivity {
         btnlevel2 =findViewById(R.id.btnlevel2);
         btnlevel3 =findViewById(R.id.btnlevel3);
         btnlevel4 =findViewById(R.id.btnlevel4);
+        level =findViewById(R.id.level_user);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // ---------------get user data from sign up---------
 
         user = findViewById(R.id.Nom_user);
         Bundle userData = getIntent().getExtras();
         String ActivityType = userData.getString("type");
+        email = userData.getString("email");
+        pwd = userData.getString("name");
+        //=============== DB get user===========
+
+        DBHelper db = new DBHelper(this);
         if(ActivityType.equals("signUp"))
         {
             userName = userData.getString("name");
             user.setText(userName);
         }
-        
-        email = userData.getString("email");
-        pwd = userData.getString("name");
+        else
+        {
+            String userF = db.fetchUser(email);
+            user.setText(userF);
+
+        }
+        String levelUser = db.fetchLevel(email);
+        level.setText("Level "+levelUser);
 
         level1.setOnClickListener(new View.OnClickListener() {
             @Override
