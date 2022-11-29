@@ -137,8 +137,12 @@ public class questionActivity extends AppCompatActivity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-                startActivity(new Intent(getApplicationContext(), QuizActivity.class));
-                finish();
+             Intent backToHome = new Intent(getApplicationContext(),QuizActivity.class);
+//                backToHome.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+//                backToHome.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(backToHome);
+//                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+
             }
         });
 

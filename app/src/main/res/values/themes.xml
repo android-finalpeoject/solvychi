@@ -13,4 +13,8 @@
         <item name="android:statusBarColor">#2998A7</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="AppTheme" parent="Theme.AppCompat">
+        <item name="android:windowDisablePreview">true</item>
+        ...
+    </style>
 </resources>

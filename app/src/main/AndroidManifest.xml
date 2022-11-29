@@ -15,7 +15,7 @@
         <activity
             android:name=".GameActivity"
             android:exported="false"
-            android:parentActivityName=".QuizActivity">
+           >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -52,7 +52,7 @@
         <activity
             android:name=".questionActivity"
             android:exported="false"
-            android:parentActivityName=".QuizActivity">
+            >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

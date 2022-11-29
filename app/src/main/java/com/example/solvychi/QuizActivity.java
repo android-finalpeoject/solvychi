@@ -41,6 +41,7 @@ public class QuizActivity extends AppCompatActivity {
             userName = userData.getString("name");
             user.setText(userName);
         }
+        
         email = userData.getString("email");
         pwd = userData.getString("name");
 
