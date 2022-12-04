@@ -22,9 +22,9 @@ public class questionActivity extends AppCompatActivity {
     private AppCompatButton option1, option2, option3, option4 ;
     private AppCompatButton nextBtn;
     private List<QuestionsList> questionsLists ;
-    private int currentQuestionPosition = 0;
+    private int currentQuestionPosition = 0,correct,wrong,result=0;
     private ImageView backBtn;
-    private String selectedOptionByUser="";
+    private String selectedOptionByUser="",email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +32,9 @@ public class questionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_question);
         getSupportActionBar().hide();
 
-          backBtn = findViewById(R.id.backBtn);
-        questions=findViewById(R.id.questions);
-        question=findViewById(R.id.question);
+        backBtn = findViewById(R.id.backBtn);
+        questions = findViewById(R.id.questions);
+        question = findViewById(R.id.question);
         option1 = findViewById(R.id.option1);
         option2 = findViewById(R.id.option2);
         option3 = findViewById(R.id.option3);
@@ -42,109 +42,111 @@ public class questionActivity extends AppCompatActivity {
         nextBtn = findViewById(R.id.nextBtn);
         final TextView selectedLevelName = findViewById(R.id.levelname);
 
-        final String getSelectedLevelName= getIntent().getStringExtra("selectedLevel");
+        Bundle data = getIntent().getExtras();
+        email = data.getString("email");
+        final String getSelectedLevelName = data.getString("selectedLevel");
         selectedLevelName.setText(getSelectedLevelName);
         questionsLists = QuestionsBank.getQuestions(getSelectedLevelName);
-        questions.setText((currentQuestionPosition+1)+"/"+questionsLists.size());
+        questions.setText((currentQuestionPosition + 1) + "/" + questionsLists.size());
         question.setImageResource(questionsLists.get(0).getQuestion());
         option1.setText(questionsLists.get(0).getOption1());
         option2.setText(questionsLists.get(0).getOption2());
         option3.setText(questionsLists.get(0).getOption3());
         option4.setText(questionsLists.get(0).getOption4());
 
+        //=============== DB get user===========
+
+        try {
 
 
 
-        option1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(selectedOptionByUser.isEmpty()){
-                    selectedOptionByUser=option1.getText().toString();
-                    option1.setBackgroundResource(R.drawable.round_back_red10);
-                    option1.setTextColor(Color.parseColor("#000000"));
-                    revealAnswer();
-                    questionsLists.get(currentQuestionPosition).setUserSelectedAnswer(selectedOptionByUser);
+            option1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (selectedOptionByUser.isEmpty()) {
+                        selectedOptionByUser = option1.getText().toString();
+                        option1.setBackgroundResource(R.drawable.round_back_red10);
+                        option1.setTextColor(Color.parseColor("#000000"));
+                        revealAnswer();
+                        questionsLists.get(currentQuestionPosition).setUserSelectedAnswer(selectedOptionByUser);
 
 
+                    }
+                }
+            });
+            option2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (selectedOptionByUser.isEmpty()) {
+                        selectedOptionByUser = option2.getText().toString();
+                        option2.setBackgroundResource(R.drawable.round_back_red10);
+                        option2.setTextColor(Color.parseColor("#000000"));
+                        revealAnswer();
+                        questionsLists.get(currentQuestionPosition).setUserSelectedAnswer(selectedOptionByUser);
 
+
+                    }
+                }
+            });
+            option3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (selectedOptionByUser.isEmpty()) {
+                        selectedOptionByUser = option3.getText().toString();
+                        option3.setBackgroundResource(R.drawable.round_back_red10);
+                        option3.setTextColor(Color.parseColor("#000000"));
+                        revealAnswer();
+                        questionsLists.get(currentQuestionPosition).setUserSelectedAnswer(selectedOptionByUser);
+
+
+                    }
 
                 }
-            }
-        });
-        option2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(selectedOptionByUser.isEmpty()){
-                    selectedOptionByUser=option2.getText().toString();
-                    option2.setBackgroundResource(R.drawable.round_back_red10);
-                    option2.setTextColor(Color.parseColor("#000000"));
-                    revealAnswer();
-                    questionsLists.get(currentQuestionPosition).setUserSelectedAnswer(selectedOptionByUser);
+            });
+            option4.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (selectedOptionByUser.isEmpty()) {
+                        selectedOptionByUser = option4.getText().toString();
+                        option4.setBackgroundResource(R.drawable.round_back_red10);
+                        option4.setTextColor(Color.parseColor("#000000"));
+                        revealAnswer();
+                        questionsLists.get(currentQuestionPosition).setUserSelectedAnswer(selectedOptionByUser);
 
 
-
-
-                }
-            }
-        });
-        option3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(selectedOptionByUser.isEmpty()){
-                    selectedOptionByUser=option3.getText().toString();
-                    option3.setBackgroundResource(R.drawable.round_back_red10);
-                    option3.setTextColor(Color.parseColor("#000000"));
-                    revealAnswer();
-                    questionsLists.get(currentQuestionPosition).setUserSelectedAnswer(selectedOptionByUser);
-
-
-
+                    }
 
                 }
+            });
+            nextBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (selectedOptionByUser.isEmpty()) {
+                        Toast.makeText(questionActivity.this, "Please select an option ", Toast.LENGTH_SHORT).show();
 
-            }
-        });
-        option4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(selectedOptionByUser.isEmpty()){
-                    selectedOptionByUser=option4.getText().toString();
-                    option4.setBackgroundResource(R.drawable.round_back_red10);
-                    option4.setTextColor(Color.parseColor("#000000"));
-                    revealAnswer();
-                    questionsLists.get(currentQuestionPosition).setUserSelectedAnswer(selectedOptionByUser);
+                    } else {
+                        changeNextQuestion();
 
-
-
+                    }
 
                 }
+            });
+            backBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
-            }
-        });
-        nextBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(selectedOptionByUser.isEmpty()){
-                    Toast.makeText(questionActivity.this , "Please select an option ",Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(), QuizActivity.class));
 
                 }
-                else{
-                    changeNextQuestion();
-                }
+            });
+            //====================change level value=========================
 
-            }
-        });
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view){
-             Intent backToHome = new Intent(getApplicationContext(),QuizActivity.class);
-//                backToHome.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-//                backToHome.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(backToHome);
-//                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
-            }
-        });
+        }catch (Exception e)
+        {
+            System.out.println(e.getCause());
+        }
+
 
     }
     private void changeNextQuestion(){
@@ -169,13 +171,33 @@ public class questionActivity extends AppCompatActivity {
             option3.setText(questionsLists.get(currentQuestionPosition).getOption3());
             option4.setText(questionsLists.get(currentQuestionPosition).getOption4());
         }
-        else{
-            Intent intent = new Intent(questionActivity.this,QuizResults.class);
-            intent.putExtra("correct",getCorrectAnswers());
-            intent.putExtra("incorrect",getIncorrectAnswers());
-            startActivity(intent);
-            finish();
+     else
+        {
+
+                DBHelper db = new DBHelper(this);
+                correct = getCorrectAnswers();
+                wrong = getIncorrectAnswers();
+                int change;
+
+                String newLevel="" ,prev="";
+                result = questionsLists.size() - wrong;
+                if (result >= 4) {
+                    prev= db.fetchLevel(email);
+                    change =Integer.parseInt(prev);
+                    change=change+1;
+                    newLevel = String.valueOf(change);
+                    db.alterLevel(email,newLevel);
+                }
+                Intent intent = new Intent(questionActivity.this, QuizResults.class);
+
+                intent.putExtra("correct", correct);
+                intent.putExtra("incorrect", wrong);
+                intent.putExtra("email", email);
+                intent.putExtra("result", newLevel);
+                startActivity(intent);
+                finish();
         }
+
     }
 
 
@@ -184,7 +206,7 @@ public class questionActivity extends AppCompatActivity {
         for (int i=0 ; i<questionsLists.size();i++){
             final String getUserSelectedAnswer = questionsLists.get(i).getUserSelectedAnswer();
             final String getAnswer = questionsLists.get(i).getAnswer();
-            if(getUserSelectedAnswer.equals(getAnswer)){
+            if(getUserSelectedAnswer !=null && getUserSelectedAnswer.equals(getAnswer)){
                 correctAnswers++;
             }
         }
@@ -196,7 +218,7 @@ public class questionActivity extends AppCompatActivity {
         for (int i=0 ; i<questionsLists.size();i++){
             final String getUserSelectedAnswer = questionsLists.get(i).getUserSelectedAnswer();
             final String getAnswer = questionsLists.get(i).getAnswer();
-            if(!getUserSelectedAnswer.equals(getAnswer)){
+            if(getUserSelectedAnswer !=null && !getUserSelectedAnswer.equals(getAnswer)){
                 correctAnswers++;
             }
         }

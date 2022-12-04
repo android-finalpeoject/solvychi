@@ -6,10 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,45 +23,23 @@ import android.widget.Toast;
 //import com.google.android.gms.common.api.ApiException;
 //import com.google.android.gms.tasks.Task;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class signupActivity extends AppCompatActivity {
+public class signupActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     private EditText name;
     private EditText email;
     private EditText pwd;
     private TextView login;
     private Button signUp;
-    private ImageView girl;
     private String level="0";
+    private String genderType;
+    private Spinner gender;
     public final Boolean signed = false;
     private final String type = "signUp";
-
-    // google regestration
-//    GoogleSignInOptions gso;
-//    GoogleSignInClient gsc;
-
-    private ImageButton google;
-    private ImageButton fb;
-    //    String []signUpData;
-// implement the TextWatcher callback listener
-//    private TextWatcher textWatcher = new TextWatcher() {
-//        @Override
-//        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//        }
-//
-//        @Override
-//        public void onTextChanged(CharSequence s, int start, int before, int count) {
-//            girl.setImageResource(R.drawable.close);
-//        }
-//
-//        @Override
-//        public void afterTextChanged(Editable s) {
-//            girl.setImageResource(R.drawable.close);
-//
-//        }
-//    };
+    List<String> genders = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,121 +51,129 @@ public class signupActivity extends AppCompatActivity {
         name = findViewById(R.id.name);
         email = findViewById(R.id.email);
         pwd = findViewById(R.id.pwd);
-        girl = findViewById(R.id.girl);
 
         //get buttons
         signUp = findViewById(R.id.signup);
 
-        fb = findViewById(R.id.fb);
+        // =========spinner =====================
+        genders.add(0,"Select your gender");
+        genders.add("Girl");
+        genders.add("Boy");
+        gender = findViewById(R.id.gender);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(signupActivity.this,
+               android.R.layout.simple_list_item_1,genders);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        gender.setAdapter((adapter));
+        gender.setOnItemSelectedListener(this);
         //login Btn
         login = findViewById(R.id.login);
+
         //==================================== DB LINKING ========================================//
         DBHelper DB = new DBHelper(this);
-        //========================change the girl image to closing eyes
 
-//        //==================reset the image================================
-//        pwd.addTextChangedListener(textWatcher);
+
         // ================================set event listener on the sign up btn
+
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 //------NAME AND EMAIL VALIDATION
+
                 String  mail= email.getText().toString();
                 String user = name.getText().toString();
                 String pass = pwd.getText().toString();
+
                 //==========check the name:
                 // Regex to check valid username.
-                String regex = "^[A-Za-z]\\w{5,29}$";
+                String regex = "^[A-Za-z]\\w{2,29}$";
+
                 // Compile the ReGex
                 Pattern p = Pattern.compile(regex);
+
                 // to find matching between given username
                 // and regular expression.
                 Matcher m = p.matcher(user);
-                if(user.isEmpty() && !m.matches())
-                {
-                    name.setBackgroundResource(R.drawable.error_inputs);
-                    Toast toast = Toast.makeText(getApplicationContext(), "please enter your name!", Toast.LENGTH_SHORT);
-                    toast.show();
-                }
-                else {
-                    // ==============check the email ==========================
-                    if (!mail.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(mail).matches()) {
-                        //==================check the password================
-                        if(pass.isEmpty())
-                        {
-                            pwd.setBackgroundResource(R.drawable.error_inputs);
-                            Toast toast = Toast.makeText(getApplicationContext(), "please enter a password!", Toast.LENGTH_SHORT);
-                            toast.show();
-                        }
-                        else {
-                            // =============check if the user exists already by checking his email:
-                            Boolean checkuser = DB.checkemail(mail);
-                            // affect inputs values to the data bundle
-                            if(checkuser == false)
-                            {
-                                // check if the user got inserted in db
-                                Boolean insert = DB.insertData(user, mail, pass,level);
-                                if(insert== true)
-                                {
-                                    Bundle data = new Bundle();
-                                    data.putString("name", user);
-                                    data.putString("email", mail);
-                                    data.putString("pwd", pass);
-                                    data.putString("type", type);
-                                    data.putString("level", level);
 
-                                    Toast toast = Toast.makeText(getApplicationContext(), "Welcome "+user+" 🤩", Toast.LENGTH_LONG);
-                                    toast.show();
-                                    Intent home = new Intent(getApplicationContext(),QuizActivity.class);
-                                    home.putExtras(data);
-                                    startActivity(home);
-                                    finish();
-                                }
-                                else
-                                {
-                                    Toast toast = Toast.makeText(getApplicationContext(), "try later!", Toast.LENGTH_SHORT);
-                                    toast.show();
-                                }
-
-                            }
-                            //=============== user already exists ==============================
-                            else
-                            {
-                                Toast toast = Toast.makeText(getApplicationContext(), "user already exists!", Toast.LENGTH_SHORT);
-                                toast.show();
-                            }
-
-                        }
+                try {
+                    // ------------user name------------------
+                    if(user.isEmpty() || !m.matches())
+                    {
+                        name.setBackgroundResource(R.drawable.error_inputs);
+                        Toast toast = Toast.makeText(getApplicationContext(), "please enter your name!", Toast.LENGTH_SHORT);
+                        toast.show();
+                        name.getText().clear();
+                        return;
                     }
-                    else {
+                    // ------------user email------------------
+
+                    if(mail.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(mail).matches())
+                    {
                         Toast.makeText(signupActivity.this, "Enter valid Email address !", Toast.LENGTH_SHORT).show();
+                        email.getText().clear();
+
+                        return;
                     }
+                    // ------------user pwd------------------
+                    if (pass.isEmpty())
+                    {
+                        pwd.setBackgroundResource(R.drawable.error_inputs);
+                        Toast.makeText(getApplicationContext(), "please enter a password!", Toast.LENGTH_SHORT).show();
+                        pwd.getText().clear();
+
+                        return;
+                    }
+                    // ------------user gender------------------
+                    if (genderType != null && genderType.equals("Select your gender"))
+                    {
+                        Toast.makeText(getApplicationContext(), "please select your gender!", Toast.LENGTH_SHORT).show();
+//                        gender.setSelection(0);
+                        return;
+                    }
+                    // =============check if the user exists already by checking his email:
+                    Boolean checkuser = DB.checkemail(mail);
+                    // affect inputs values to the data bundle
+                    if(checkuser)
+                    {
+                        Toast.makeText(getApplicationContext(), "user already exists!", Toast.LENGTH_SHORT).show();
+                        resetInputs();
+                        return;
+                    }
+                    // check if the user got inserted in db
+                    Boolean insert = DB.insertData(user, mail, pass,level,genderType);
+                    if(insert == false)
+                    {
+                        Toast.makeText(getApplicationContext(), "try later!", Toast.LENGTH_SHORT).show();
+                        resetInputs();
+                        return;
+                    }
+                    Bundle data = new Bundle();
+                    data.putString("name", user);
+                    data.putString("email", mail);
+                    data.putString("pwd", pass);
+                    data.putString("gender",genderType);
+                    data.putString("type", type);
+                    data.putString("level", level);
+
+                    Toast toast = Toast.makeText(getApplicationContext(), "Welcome "+user+" 🤩", Toast.LENGTH_LONG);
+                    toast.show();
+                    resetInputs();
+                    Intent home = new Intent(getApplicationContext(),QuizActivity.class);
+                    home.putExtras(data);
+                    startActivity(home);
+                    finish();
+                }catch(Exception e)
+                {
+                    System.out.println(e.getCause());
                 }
+
+
+
 
             }
         });
 
-        //=======================google button
-//        google = findViewById(R.id.google);
-//        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
-//        gsc = GoogleSignIn.getClient(this,gso);
-////        // set event listener on the google btn
-//        google.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//               signIn();
-//            }
-//        });
-//        // set event listener on the fb btn
-//        this.fb.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-////                Intent home = new Intent(getApplicationContext(),temp.class);
-////                home.putExtra("data",signUpData);
-////                startActivity(home);
-//            }
-//        });
-//        // set event listener on the login btn
+ // set event listener on the login btn
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -197,33 +186,27 @@ public class signupActivity extends AppCompatActivity {
 
 
     }
-//    void signIn()
-//    {
-//        Intent signInIntent = gsc.getSignInIntent();
-//        startActivityForResult(signInIntent,1000);
-//    }
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if(requestCode == 1000)
-//        {
-//             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-//            try {
-//                task.getResult(ApiException.class);
-//                navigateToSecondActivity();
-//            } catch (ApiException e) {
-//                Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show();
-//
-//            }
-//        }
-//    }
-//    void navigateToSecondActivity()
-//    {
-//        finish();
-//        Intent intent = new Intent(getApplicationContext(),temp.class);
-//        startActivity(intent);
-//    }
-//
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
 
+        if (adapterView.getItemAtPosition(position)!= null && adapterView.getItemAtPosition(position).equals("Select your gender")) {
+            genderType = adapterView.getItemAtPosition(0).toString();
+
+        } else {
+            genderType = adapterView.getItemAtPosition(position).toString();
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
+    public void resetInputs()
+    {
+        name.getText().clear();
+        email.getText().clear();
+        pwd.getText().clear();
+        gender.setSelection(0);
+    }
 }

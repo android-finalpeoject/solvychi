@@ -105,10 +105,12 @@
             android:layout_marginRight="25dp"
             android:layout_marginBottom="10dp"
             android:text="LOGIN"
-            android:elevation="10dp"
+            android:elevation="20dp"
             android:textColor="@color/white"
             android:textAlignment="center"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:background="@drawable/buttons"
+            />
 
         <TextView
             android:layout_width="wrap_content"

@@ -64,7 +64,17 @@
             android:layout_marginTop="10dp"
             android:textSize="20dp"
             />
+        <TextView
 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/end_level"
+            android:text=""
+            android:textStyle="bold"
+            android:textColor="#E63030"
+
+            android:textSize="20dp"
+            />
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -79,4 +89,5 @@
         android:background="@drawable/round_back_green20"
         android:text="Start new quiz"
         android:textColor="@color/white" />
+
 </RelativeLayout>
