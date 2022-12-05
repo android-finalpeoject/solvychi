@@ -16,20 +16,20 @@
         android:layout_height="50dp"
         android:id="@+id/backside"
         >
-      <ImageView android:id="@+id/logout"
-            android:layout_width="35dp"
-            android:layout_height="40dp"
-           android:layout_centerVertical="true"
-            android:layout_marginStart="20dp"
-           android:src="@drawable/logout"
-           />
+<!--        <ImageView-->
+<!--            android:id="@+id/backBtn_q"-->
+<!--            android:layout_width="35dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_centerVertical="true"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:src="@drawable/back1"-->
+<!--            />-->
 
         <TextView
-            android:id="@+id/editprofile"
+            android:id="@+id/levelname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:backgroundTint="#00000000"
             android:text="Edit profile"
             android:textColor="#C4FFFFFF"
             android:textSize="16sp"

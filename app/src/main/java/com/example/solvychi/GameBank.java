@@ -35,8 +35,8 @@ public class GameBank {
 
             case "level3":
                 return Level3Quiz();
-           case "level4":
-              return Level4Quiz();
+//            case "level4":
+//                return Level4Quiz();
             default:
                 return Level4Quiz();
 

@@ -68,27 +68,6 @@ public class DBHelper extends SQLiteOpenHelper {
             return cursor.getString(0);
         else return null;
     }
-    // below is the method for updating our courses
-    public void updateCourse(String origemail,String username, String email, String password
-                           ) {
-
-        // calling a method to get writable database.
-        SQLiteDatabase MyDB = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-
-        // on below line we are passing all values
-        // along with its key and value pair.
-        values.put("username", username);
-        values.put("email",email);
-        values.put("password", password);
-
-
-        // on below line we are calling a update method to update our database and passing our values.
-        // and we are comparing it with name of our course which is stored in original name variable.
-        MyDB.update("users", values, "email=?", new String[]{origemail});
-        MyDB.close();
-    }
-
 
 
 }

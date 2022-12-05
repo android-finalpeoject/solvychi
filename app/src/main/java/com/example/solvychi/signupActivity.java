@@ -132,7 +132,7 @@ public class signupActivity extends AppCompatActivity {
                                     data.putString("type", type);
                                     Toast toast = Toast.makeText(getApplicationContext(), "Welcome "+user+" 🤩", Toast.LENGTH_LONG);
                                     toast.show();
-                                    Intent home = new Intent(getApplicationContext(),QuizActivity.class);
+                                    Intent home = new Intent(getApplicationContext(),loginActivity.class);
                                     home.putExtras(data);
                                     startActivity(home);
                                     finish();
