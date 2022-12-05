@@ -173,9 +173,9 @@ public class QuizActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent edit = new Intent(QuizActivity.this, EditActivity.class);
-                edit.putExtra("username", userData.getString("name"));
-                edit.putExtra("email", userData.getString("email"));
-                edit.putExtra("password", userData.getString("pwd"));
+                edit.putExtra("username", userName);
+                edit.putExtra("email", email);
+                edit.putExtra("password", pwd);
                 startActivity(edit);
 
                 finish();
