@@ -28,24 +28,6 @@ public class loginActivity extends AppCompatActivity {
     DBHelper DB;
 
     private final String type = "login";
-    // implement the TextWatcher callback listener
-//    private TextWatcher textWatcher = new TextWatcher() {
-//        @Override
-//        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//        }
-//
-//        @Override
-//        public void onTextChanged(CharSequence s, int start, int before, int count) {
-//            girl.setImageResource(R.drawable.close);
-//        }
-//
-//        @Override
-//        public void afterTextChanged(Editable s) {
-//            girl.setImageResource(R.drawable.girl);
-//
-//        }
-//    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,28 +59,26 @@ public class loginActivity extends AppCompatActivity {
 
                 if(DB.checkemailpassword(mail,pass))
                 {
-                    Toast toast = Toast.makeText(getApplicationContext(),"Let's go🤩!",Toast.LENGTH_SHORT);
-                    toast.show();
-                    Intent loginAct = new Intent(getApplicationContext(),QuizActivity.class);
-                    startActivity(loginAct);
-                    Intent home = new Intent(getApplicationContext(),QuizActivity.class);
+                   Toast.makeText(getApplicationContext(),"Let's go🤩!",Toast.LENGTH_SHORT).show();
+
+
                     Bundle B = new Bundle();
 
                     B.putString("email", mail);
                     B.putString("pwd", pass);
                     B.putString("type", type);
+                    Intent home = new Intent(getApplicationContext(),QuizActivity.class);
                     home.putExtras(B);
                     startActivity(home);
 
-                    finish();
+
                 }
                 //==================WRONG============
                 // wrong email
                 else {
                     if (!DB.checkemail(mail) && !mail.isEmpty()) {
                         email.setBackgroundResource(R.drawable.error_inputs);
-                        Toast toast = Toast.makeText(getApplicationContext(), "wrong email!", Toast.LENGTH_SHORT);
-                        toast.show();
+                       Toast.makeText(getApplicationContext(), "wrong email!", Toast.LENGTH_SHORT).show();
                     }
                     // wrong pwd
                     //===========EMPTY=================
@@ -106,21 +86,18 @@ public class loginActivity extends AppCompatActivity {
                     else {
                         if (mail.isEmpty()) {
                             email.setBackgroundResource(R.drawable.error_inputs);
-                            Toast toast = Toast.makeText(getApplicationContext(), "empty email!", Toast.LENGTH_SHORT);
-                            toast.show();
+                           Toast.makeText(getApplicationContext(), "empty email!", Toast.LENGTH_SHORT).show();
                         }
                         // empty pwd
                         else if (pass.isEmpty())
                         {
 
                             pwd.setBackgroundResource(R.drawable.error_inputs);
-                            Toast toast = Toast.makeText(getApplicationContext(), "empty password!", Toast.LENGTH_SHORT);
-                            toast.show();
+                         Toast.makeText(getApplicationContext(), "empty password!", Toast.LENGTH_SHORT).show();
                         }
                         else {
                             pwd.setBackgroundResource(R.drawable.error_inputs);
-                            Toast toast = Toast.makeText(getApplicationContext(), "wrong password!", Toast.LENGTH_SHORT);
-                            toast.show();
+                          Toast.makeText(getApplicationContext(), "wrong password!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }

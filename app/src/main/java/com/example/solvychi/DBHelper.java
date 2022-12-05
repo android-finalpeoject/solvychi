@@ -10,26 +10,32 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String DBNAME = "SignUp.db";
     public DBHelper(Context context)
     {
-        super(context, "SignUp.db", null, 1);
+        super(context, "SignUp.db", null, 3);
     }
     @Override
     public void onCreate(SQLiteDatabase MyDB) {
-        MyDB.execSQL("create Table users (email TEXT primary key ,username TEXT, password TEXT)");
+        MyDB.execSQL("create Table users(email TEXT primary key ,username TEXT, password TEXT,level TEXT,gender TEXT)");
+//        MyDB.execSQL("alter Table users add level TEXT");
+
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase MyDB, int i, int i1) {
-        MyDB.execSQL("drop Table if exists users");
+        MyDB.execSQL("alter Table  users add column gender TEXT");
+
 
     }
-    public Boolean insertData(String username, String email, String password)
+    public Boolean insertData(String username, String email, String password,String level,String gender)
     {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("username", username);
         contentValues.put("email", email);
         contentValues.put("password", password);
+        contentValues.put("level", level);
+        contentValues.put("gender", gender);
+
         long result = MyDB.insert("users",null,contentValues);
         if(result == -1) return false;
         else  return true;
@@ -45,7 +51,7 @@ public class DBHelper extends SQLiteOpenHelper {
 //    }
     public Boolean checkemail(String email)
     {
-        SQLiteDatabase MyDB = this.getWritableDatabase();
+        SQLiteDatabase MyDB = this.getReadableDatabase();
         Cursor cursor = MyDB.rawQuery("Select * from users where email =?",new String[] {email});
         if(cursor.getCount()>0)
             return true;
@@ -53,7 +59,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
     public Boolean checkemailpassword(String email,String password)
     {
-        SQLiteDatabase MyDB = this.getWritableDatabase();
+        SQLiteDatabase MyDB = this.getReadableDatabase();
         Cursor cursor = MyDB.rawQuery("Select * from users where email =? and password = ?",new String[] {email,password});
         if(cursor.getCount()>0)
             return true;
@@ -61,13 +67,47 @@ public class DBHelper extends SQLiteOpenHelper {
     }
     public String checkpassword(String email)
     {
-        SQLiteDatabase MyDB = this.getWritableDatabase();
+        SQLiteDatabase MyDB = this.getReadableDatabase();
         Cursor cursor = MyDB.rawQuery("Select password from users where email =? ",new String[] {email});
         cursor.moveToFirst();
         if(cursor.getCount()>0)
             return cursor.getString(0);
         else return null;
     }
+    public String fetchUser(String email)
+    {
+        SQLiteDatabase MyDB = this.getReadableDatabase();
+        Cursor cursor = MyDB.rawQuery("Select username from users where email =? ",new String[] {email});
+        cursor.moveToFirst();
+        if(cursor.getCount()>0)
+            return cursor.getString(0);
+        else return null;
+    }
+    public String fetchLevel(String email)
+    {
+        SQLiteDatabase MyDB = this.getReadableDatabase();
+        Cursor cursor = MyDB.rawQuery("Select level from users where email =? ",new String[] {email});
+        cursor.moveToFirst();
+        if(cursor.getCount()>0)
+            return cursor.getString(0);
+        else return null;
+    }
+    public String fetchGender(String email)
+    {
+        SQLiteDatabase MyDB = this.getReadableDatabase();
+        Cursor cursor = MyDB.rawQuery("Select gender from users where email =? ",new String[] {email});
+        cursor.moveToFirst();
+        if(cursor.getCount()>0)
+            return cursor.getString(0);
+        else return null;
+    }
+    public boolean alterLevel(String email, String level)
+    {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        ContentValues newValues = new ContentValues();
+        newValues.put("level", level);
+       return MyDB.update("users",newValues,"email=?",new String[] {email})>0;
 
 
+    }
 }
