@@ -7,15 +7,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class QuizActivity extends AppCompatActivity {
     private String selectedLevelName;
     private AppCompatButton btnlevel1, btnlevel2, btnlevel3, btnlevel4 ;
     private TextView user;
     private String userName, email,pwd;
+    private ImageView logout;
+    private TextView editprofil;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +32,8 @@ public class QuizActivity extends AppCompatActivity {
         btnlevel2 =findViewById(R.id.btnlevel2);
         btnlevel3 =findViewById(R.id.btnlevel3);
         btnlevel4 =findViewById(R.id.btnlevel4);
+        logout = findViewById(R.id.logout);
+        editprofil=findViewById(R.id.editprofile);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // ---------------get user data from sign up---------
 
@@ -42,7 +46,7 @@ public class QuizActivity extends AppCompatActivity {
             user.setText(userName);
         }
         email = userData.getString("email");
-        pwd = userData.getString("name");
+        pwd = userData.getString("pwd");
 
         level1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,5 +140,29 @@ public class QuizActivity extends AppCompatActivity {
             }
 
         });
+        editprofil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent edit = new Intent(QuizActivity.this, EditActivity.class);
+                edit.putExtra("username", userData.getString("name"));
+                edit.putExtra("email", userData.getString("email"));
+                edit.putExtra("password", userData.getString("pwd"));
+
+                startActivity(edit);
+
+                finish();
+            }
+        });
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                Intent in = new Intent(getApplicationContext(), loginActivity.class);
+                startActivity(in);
+
+            }
+        });
+
     }
 }

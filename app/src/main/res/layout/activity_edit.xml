@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    tools:context=".EditActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#2998A7"
+        >
+        <ImageView
+            android:id="@+id/backBtnn"
+            android:layout_width="35dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/back1"
+            />
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Profile Edit"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            />
+
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@color/white"
+        android:layout_marginTop="150dp"
+        >
+
+        <TextView
+            android:id="@+id/changename"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:text="Username:"
+            android:textColor="@color/blue"
+            android:textSize="18dp" />
+
+        <EditText
+            android:layout_below="@+id/changename"
+            android:id="@+id/inputusername"
+            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:textColor="@color/blue"
+            android:elevation="5dp"
+
+            android:layout_height="40dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginBottom="10dp"
+            android:inputType="textEmailSubject"
+            android:background="@drawable/inputborder" />
+        <TextView
+            android:id="@+id/changemail"
+            android:layout_below="@id/inputusername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:text="Email:"
+            android:textColor="@color/blue"
+            android:textSize="18dp" />
+
+        <EditText
+            android:layout_below="@+id/changemail"
+            android:id="@+id/inputchangemail"
+            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:textColor="@color/blue"
+            android:elevation="5dp"
+
+            android:layout_height="40dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/inputborder" />
+        <TextView
+            android:id="@+id/changepassword"
+            android:layout_below="@id/inputchangemail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:text="Password:"
+            android:textColor="@color/blue"
+            android:textSize="18dp" />
+
+        <EditText
+            android:layout_below="@+id/changepassword"
+            android:id="@+id/inputchangepassword"
+            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:textColor="@color/blue"
+            android:elevation="5dp"
+
+            android:layout_height="40dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/inputborder" />
+
+    </RelativeLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/update"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:textColor="@color/white"
+        android:background="@drawable/round_back_green20"
+        android:text="Confirm"/>
+
+</LinearLayout>

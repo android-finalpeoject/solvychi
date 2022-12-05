@@ -13,6 +13,13 @@
         android:theme="@style/Theme.Solvychi"
         tools:targetApi="31">
         <activity
+            android:name=".EditActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".GameActivity"
             android:exported="false"
             android:parentActivityName=".QuizActivity">
@@ -36,8 +43,7 @@
         </activity>
         <activity
             android:name=".QuizActivity"
-            android:exported="false"
-            >
+            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -57,8 +63,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
-
         <activity
             android:name=".finishactivity"
             android:exported="false">
