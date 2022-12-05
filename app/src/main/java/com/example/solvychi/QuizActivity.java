@@ -20,6 +20,8 @@ public class QuizActivity extends AppCompatActivity {
     private AppCompatButton btnlevel1, btnlevel2, btnlevel3, btnlevel4 ;
     private TextView user, level;
     private String userName, email,pwd,gender, levelUser;
+    private ImageView logout;
+    private TextView editprofil;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +31,8 @@ public class QuizActivity extends AppCompatActivity {
         final LinearLayout level2 = findViewById(R.id.level2);
         final LinearLayout level3 = findViewById(R.id.layout3);
         final LinearLayout level4 = findViewById(R.id.layout4);
+        logout = findViewById(R.id.logout);
+        editprofil=findViewById(R.id.editprofile);
         TextView text = (TextView) findViewById(R.id.error);
         ImageView pdp = (ImageView) findViewById(R.id.imageProfile);
         ImageView stars = (ImageView) findViewById(R.id.level_stars);
@@ -164,6 +168,28 @@ public class QuizActivity extends AppCompatActivity {
 
 
         }
+        editprofil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent edit = new Intent(QuizActivity.this, EditActivity.class);
+                edit.putExtra("username", userData.getString("name"));
+                edit.putExtra("email", userData.getString("email"));
+                edit.putExtra("password", userData.getString("pwd"));
+                startActivity(edit);
+
+                finish();
+            }
+        });
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                Intent in = new Intent(getApplicationContext(), loginActivity.class);
+                startActivity(in);
+
+            }
+        });
                  btnlevel1.setOnClickListener(new View.OnClickListener() {
                      @Override
                      public void onClick(View view) {
@@ -255,6 +281,7 @@ public class QuizActivity extends AppCompatActivity {
 
 
     }
+
     public void changeStars(String star,ImageView stars)
     {
         switch (star)
@@ -276,5 +303,6 @@ public class QuizActivity extends AppCompatActivity {
 
         }
     }
+
 
 }
