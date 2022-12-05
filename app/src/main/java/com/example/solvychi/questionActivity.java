@@ -135,7 +135,7 @@ public class questionActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
 
-                    startActivity(new Intent(getApplicationContext(), QuizActivity.class));
+                    onBackPressed();
 
                 }
             });
@@ -178,6 +178,7 @@ public class questionActivity extends AppCompatActivity {
                 correct = getCorrectAnswers();
                 wrong = getIncorrectAnswers();
                 int change;
+                boolean updated=false;
 
                 String newLevel="" ,prev="";
                 result = questionsLists.size() - wrong;
@@ -186,14 +187,18 @@ public class questionActivity extends AppCompatActivity {
                     change =Integer.parseInt(prev);
                     change=change+1;
                     newLevel = String.valueOf(change);
-                    db.alterLevel(email,newLevel);
+                   try{
+                       updated = db.alterLevel(email,newLevel);
+                   }catch(Exception e){
+                              Toast.makeText(questionActivity.this,e.getMessage(),Toast.LENGTH_LONG);
+                   }
                 }
                 Intent intent = new Intent(questionActivity.this, QuizResults.class);
 
                 intent.putExtra("correct", correct);
                 intent.putExtra("incorrect", wrong);
                 intent.putExtra("email", email);
-                intent.putExtra("result", newLevel);
+                intent.putExtra("updated", updated);
                 startActivity(intent);
                 finish();
         }

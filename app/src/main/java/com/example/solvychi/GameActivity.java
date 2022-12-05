@@ -27,8 +27,8 @@ public class GameActivity extends AppCompatActivity {
     private int presCounter = 0;
     private AppCompatButton nextBtn;
     private List<GameObject> quizList ;
-    private int currentQuestionPosition = 0;
-    private String userAns="";
+    private int currentQuestionPosition = 0,correct,wrong,result=0;
+    private String userAns="",email;
     Animation smallbigforth;
     private String [] keys;
     private ImageView backBtn;
@@ -49,7 +49,9 @@ public class GameActivity extends AppCompatActivity {
         nextBtn = findViewById(R.id.nextBtn);
         final TextView selectedLevelName = findViewById(R.id.levelname);
 //
-        final String getSelectedLevelName= getIntent().getStringExtra("selectedLevel");
+        Bundle data = getIntent().getExtras();
+        email = data.getString("email");
+        final String getSelectedLevelName= data.getString("selectedLevel");
         selectedLevelName.setText(getSelectedLevelName);
         quizList = GameBank.getQuiz(getSelectedLevelName);
         answers.setText((currentQuestionPosition+1)+"/"+quizList.size());
@@ -206,9 +208,31 @@ public class GameActivity extends AppCompatActivity {
 
         }
         else{
-            Intent intent = new Intent(GameActivity.this,QuizResults.class);
-            intent.putExtra("correct",getCorrectAnswers());
-            intent.putExtra("incorrect",getIncorrectAnswers());
+            DBHelper db = new DBHelper(this);
+            correct = getCorrectAnswers();
+            wrong = getIncorrectAnswers();
+            int change;
+            boolean updated=false;
+
+            String newLevel="" ,prev="";
+            result = quizList.size() - wrong;
+            if (result >= 3) {
+                prev= db.fetchLevel(email);
+                change =Integer.parseInt(prev);
+                change=change+1;
+                newLevel = String.valueOf(change);
+                try{
+                    updated = db.alterLevel(email,newLevel);
+                }catch(Exception e){
+                    Toast.makeText(GameActivity.this,e.getMessage(),Toast.LENGTH_LONG);
+                }
+            }
+            Intent intent = new Intent(GameActivity.this, QuizResults.class);
+
+            intent.putExtra("correct", correct);
+            intent.putExtra("incorrect", wrong);
+            intent.putExtra("email", email);
+            intent.putExtra("updated", updated);
             startActivity(intent);
             finish();
         }

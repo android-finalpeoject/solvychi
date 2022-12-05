@@ -23,6 +23,8 @@ public class QuizResults extends AppCompatActivity {
         getSupportActionBar().hide();
         final AppCompatButton startnewBtn = findViewById(R.id.btnstartnext);
         final TextView correctAnswer = findViewById(R.id.correctAnswers);
+         TextView updated = (TextView) findViewById(R.id.up);
+
         final TextView incorrectAnswer = findViewById(R.id.incorrectAnswers);
         final ImageView back = findViewById(R.id.backBtn);
         final int getCorrectAnsewrs = getIntent().getIntExtra("correct",0);
@@ -31,21 +33,18 @@ public class QuizResults extends AppCompatActivity {
         final int getIncorrectAnsewrs = getIntent().getIntExtra("incorrect",0);
         correctAnswer.setText("Correct answers :"+String.valueOf(getCorrectAnsewrs));
         incorrectAnswer.setText("Incorrect answers:"+String.valueOf(getIncorrectAnsewrs));
-        DBHelper db = new DBHelper(this);
+//        updated.setText("updated:"+getIntent().getBooleanExtra("updated",false));
+
+
             startnewBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
-                    try {
-
                              Intent backToHome = new Intent(QuizResults.this ,QuizActivity.class);
-                             backToHome.putExtra("result", true);
+//                             backToHome.putExtra("result", true);
                              startActivity(backToHome);
 //                    finish();
-                    }catch (Exception e)
-                    {
-                      Toast.makeText(QuizResults.this,e.getMessage(),Toast.LENGTH_LONG);
-                    }
+
                 }
             });
 

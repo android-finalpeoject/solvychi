@@ -68,7 +68,7 @@
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/end_level"
+            android:id="@+id/up"
             android:text=""
             android:textStyle="bold"
             android:textColor="#E63030"

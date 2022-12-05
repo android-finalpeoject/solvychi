@@ -101,14 +101,12 @@ public class DBHelper extends SQLiteOpenHelper {
             return cursor.getString(0);
         else return null;
     }
-    public void alterLevel(String email, String level)
+    public boolean alterLevel(String email, String level)
     {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues newValues = new ContentValues();
-
-        newValues.put("email", email);
         newValues.put("level", level);
-        MyDB.update("users",newValues,"email=?",null);
+       return MyDB.update("users",newValues,"email=?",new String[] {email})>0;
 
 
     }

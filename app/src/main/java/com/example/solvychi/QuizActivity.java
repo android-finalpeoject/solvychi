@@ -12,6 +12,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class QuizActivity extends AppCompatActivity {
     private String selectedLevelName;
     private AppCompatButton btnlevel1, btnlevel2, btnlevel3, btnlevel4 ;
@@ -28,22 +31,28 @@ public class QuizActivity extends AppCompatActivity {
         final LinearLayout level4 = findViewById(R.id.layout4);
         TextView text = (TextView) findViewById(R.id.error);
         ImageView pdp = (ImageView) findViewById(R.id.imageProfile);
+        ImageView stars = (ImageView) findViewById(R.id.level_stars);
         btnlevel1 =findViewById(R.id.btnlevel1);
         btnlevel2 =findViewById(R.id.btnlevel2);
         btnlevel3 =findViewById(R.id.btnlevel3);
         btnlevel4 =findViewById(R.id.btnlevel4);
         level =findViewById(R.id.level_user);
+        List<Button> btnList = new ArrayList<>();
+        btnList.add(btnlevel1);
+        btnList.add(btnlevel2);
+        btnList.add(btnlevel3);
+        btnList.add(btnlevel4);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // ---------------get user data from sign up/login---------
 
         user = findViewById(R.id.Nom_user);
         Bundle userData = getIntent().getExtras();
-        String  ActivityType = userData.getString("type");
+         String  ActivityType = userData.getString("type");
         email = userData.getString("email");
         pwd = userData.getString("pwd");
 
-        boolean backFromResult = getIntent().getBooleanExtra("result",false);
+
 
 
         //=============== DB get user===========
@@ -67,11 +76,22 @@ public class QuizActivity extends AppCompatActivity {
 
 
                  }
-                if(backFromResult==false)
-                {
-                    levelUser = db.fetchLevel(email);
-                    level.setText("Level "+levelUser);
-                }
+                 levelUser = db.fetchLevel(email);
+        // ===============enable all the buttons of remaining levels===============
+        int nbLevel= Integer.parseInt(levelUser);
+        for (int i =nbLevel+1;i<btnList.size();i++)
+        {
+            btnList.get(i).setEnabled(false);
+            btnList.get(i).setText("Locked 🔒");
+            btnList.get(i).setBackgroundResource(R.drawable.button_lock);
+        }
+        // ===============change the state of all previous levels===============
+        int n = nbLevel-1;
+        while (n>=0)
+        {
+            btnList.get(n).setText("Replay");
+            n--;
+        }
                  level1.setOnClickListener(new View.OnClickListener() {
                      @Override
                      public void onClick(View view) {
@@ -120,6 +140,30 @@ public class QuizActivity extends AppCompatActivity {
 
                      }
                  });
+        switch (levelUser)
+        {
+
+            case "1":
+                btnlevel2.setEnabled(true);
+                btnlevel2.setText("START");
+                btnlevel2.setBackgroundResource(R.drawable.button);
+
+                break;
+            case "2":
+                btnlevel3.setEnabled(true);
+                btnlevel3.setText("START");
+                btnlevel3.setBackgroundResource(R.drawable.button);
+
+                break;
+            case "3":
+                btnlevel4.setEnabled(true);
+                btnlevel4.setText("START");
+                btnlevel4.setBackgroundResource(R.drawable.button);
+
+
+
+
+        }
                  btnlevel1.setOnClickListener(new View.OnClickListener() {
                      @Override
                      public void onClick(View view) {
@@ -157,7 +201,7 @@ public class QuizActivity extends AppCompatActivity {
                      public void onClick(View view) {
                          selectedLevelName = "level3";
                          Bundle data = new Bundle();
-                         Intent intent = new Intent(QuizActivity.this, questionActivity.class);
+                         Intent intent = new Intent(QuizActivity.this, GameActivity.class);
                          data.putString("selectedLevel", selectedLevelName);
                          data.putString("email", email);
                          intent.putExtras(data);
@@ -172,7 +216,7 @@ public class QuizActivity extends AppCompatActivity {
                      public void onClick(View view) {
                          selectedLevelName = "level4";
                          Bundle data = new Bundle();
-                         Intent intent = new Intent(QuizActivity.this, questionActivity.class);
+                         Intent intent = new Intent(QuizActivity.this, GameActivity.class);
                          data.putString("selectedLevel", selectedLevelName);
                          data.putString("email", email);
                          intent.putExtras(data);
@@ -184,12 +228,8 @@ public class QuizActivity extends AppCompatActivity {
                  });
                  //=====================================update the level================
 
-                 if(backFromResult)
-                 {
-                     levelUser = db.fetchLevel(email);
-                     level.setText("Level "+levelUser);
-
-                 }
+                 level.setText("Level "+levelUser);
+                 changeStars(levelUser,stars);
 
 //         }catch (Exception e)
 //         {
@@ -215,4 +255,26 @@ public class QuizActivity extends AppCompatActivity {
 
 
     }
+    public void changeStars(String star,ImageView stars)
+    {
+        switch (star)
+        {
+            case "0":
+                stars.setImageResource(R.drawable.level0);
+                break;
+            case "1":
+                stars.setImageResource(R.drawable.level1);
+                break;
+            case "2":
+                stars.setImageResource(R.drawable.level2);
+                break;
+            case "3":
+                stars.setImageResource(R.drawable.level3);
+                break;
+            case "4":
+                stars.setImageResource(R.drawable.level4);
+
+        }
+    }
+
 }
