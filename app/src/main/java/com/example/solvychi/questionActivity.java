@@ -234,7 +234,7 @@ public class questionActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
 
-        startActivity(new Intent(questionActivity.this , QuizActivity.class));
+        startActivity(new Intent(getApplicationContext() , QuizActivity.class));
         finish();
     }
     private void revealAnswer(){

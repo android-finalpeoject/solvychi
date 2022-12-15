@@ -59,6 +59,7 @@ public class loginActivity extends AppCompatActivity {
 
                 if(DB.checkemailpassword(mail,pass))
                 {
+
                    Toast.makeText(getApplicationContext(),"Let's go🤩!",Toast.LENGTH_SHORT).show();
 
 

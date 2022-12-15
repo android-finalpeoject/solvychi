@@ -48,47 +48,6 @@ public class QuestionsBank {
 
 
 
-//    private static List<QuestionsList> Level3Questions() {
-//        final List<QuestionsList> questionsListLists = new ArrayList<>();
-//        // create object of QuestionList class and pass a question along with options and answers
-//        final QuestionsList question1 = new QuestionsList("213", "216", "344", "785", "344", "", R.drawable.step1);
-//        final QuestionsList question2 = new QuestionsList("213", "216", "344", "785", "344", "", R.drawable.step2);
-//        final QuestionsList question3 = new QuestionsList("213", "216", "344", "785", "344", "", R.drawable.step3);
-//        final QuestionsList question4 = new QuestionsList("213", "216", "344", "785", "344", "", R.drawable.step4);
-//        final QuestionsList question5 = new QuestionsList("213", "216", "344", "785", "344", "", R.drawable.step1);
-//        final QuestionsList question6 = new QuestionsList("213", "216", "344", "785", "344", "", R.drawable.step2);
-//        //add all the questions to the ListQuestion
-//        questionsListLists.add(question1);
-//        questionsListLists.add(question2);
-//        questionsListLists.add(question3);
-//        questionsListLists.add(question4);
-//        questionsListLists.add(question5);
-//        questionsListLists.add(question6);
-//        return questionsListLists;
-//
-//    }
-//
-//    ;
-//
-//    private static List<QuestionsList> Level4Questions() {
-//        final List<QuestionsList> questionsListLists = new ArrayList<>();
-//        // create object of QuestionList class and pass a question along with options and answers
-//        final QuestionsList question1 = new QuestionsList("213", "216", "344", "785", "344", "", R.drawable.maths1);
-//        final QuestionsList question2 = new QuestionsList("213", "216", "344", "785", "344", "", R.drawable.step2);
-//        final QuestionsList question3 = new QuestionsList("213", "216", "344", "785", "344", "", R.drawable.step3);
-//        final QuestionsList question4 = new QuestionsList("213", "216", "344", "785", "344", "", R.drawable.step4);
-//        final QuestionsList question5 = new QuestionsList("213", "216", "344", "785", "344", "", R.drawable.step1);
-//        final QuestionsList question6 = new QuestionsList("213", "216", "344", "785", "344", "", R.drawable.step2);
-//        //add all the questions to the ListQuestion
-//        questionsListLists.add(question1);
-//        questionsListLists.add(question2);
-//        questionsListLists.add(question3);
-//        questionsListLists.add(question4);
-//        questionsListLists.add(question5);
-//        questionsListLists.add(question6);
-//        return questionsListLists;
-//
-//    }
 
 
     public static List<QuestionsList> getQuestions(String selectedLevelName) {

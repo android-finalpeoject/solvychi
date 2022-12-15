@@ -48,12 +48,12 @@ public class GameActivity extends AppCompatActivity {
         userAnswer = findViewById(R.id.userAnswer);
         nextBtn = findViewById(R.id.nextBtn);
         final TextView selectedLevelName = findViewById(R.id.levelname);
-//
+     //===============bundle==============================================
         Bundle data = getIntent().getExtras();
         email = data.getString("email");
         final String getSelectedLevelName= data.getString("selectedLevel");
         selectedLevelName.setText(getSelectedLevelName);
-        quizList = GameBank.getQuiz(getSelectedLevelName);
+        quizList = GameBank.getQuiz();
         answers.setText((currentQuestionPosition+1)+"/"+quizList.size());
         question.setImageResource(quizList.get(0).getQuizImage());
         // to affect for each textView its letter:j

@@ -49,7 +49,7 @@ public class EditActivity extends AppCompatActivity {
                 DB.updateProfile(changemaill,inputusername.getText().toString(), inputchangemail.getText().toString(), inputchangepassword.getText().toString());
 
                 // displaying a toast message that our course has been updated.
-                Toast.makeText(EditActivity.this, "Course Updated..", Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditActivity.this, "Profile Updated ✅", Toast.LENGTH_SHORT).show();
 
                 // launching our main activity.
                 Intent i = new Intent(EditActivity.this, QuizActivity.class);
@@ -63,7 +63,7 @@ public class EditActivity extends AppCompatActivity {
 
                 Intent in = new Intent(EditActivity.this, QuizActivity.class);
                 startActivity(in);
-                finish();
+
 
             }
         });

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/edit"
     tools:context=".EditActivity">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -35,8 +36,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:background="@color/white"
-        android:layout_marginTop="150dp"
+
+        android:layout_marginTop="140dp"
         >
 
         <TextView
@@ -45,8 +46,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:text="Username:"
-            android:textColor="@color/blue"
-            android:textSize="18dp" />
+            android:textColor="#2997A6"
+            android:textStyle="bold"
+            android:textSize="20dp" />
 
         <EditText
             android:layout_below="@+id/changename"
@@ -70,8 +72,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:text="Email:"
-            android:textColor="@color/blue"
-            android:textSize="18dp" />
+            android:textColor="#2997A6"
+            android:textStyle="bold"
+            android:textSize="20dp"/>
 
         <EditText
             android:layout_below="@+id/changemail"
@@ -94,8 +97,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:text="Password:"
-            android:textColor="@color/blue"
-            android:textSize="18dp" />
+            android:textColor="#2997A6"
+            android:textStyle="bold"
+            android:textSize="20dp" />
 
         <EditText
             android:layout_below="@+id/changepassword"
@@ -118,7 +122,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+
         android:layout_marginEnd="20dp"
         android:textColor="@color/white"
         android:background="@drawable/round_back_green20"
