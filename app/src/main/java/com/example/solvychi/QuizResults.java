@@ -42,7 +42,7 @@ public class QuizResults extends AppCompatActivity {
 
                              Intent backToHome = new Intent(QuizResults.this ,QuizActivity.class);
 //                             backToHome.putExtra("result", true);
-           
+
                                 startActivity(backToHome);
 
 
