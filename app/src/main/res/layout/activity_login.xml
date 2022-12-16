@@ -9,7 +9,7 @@
     android:background="@drawable/bg">
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="80dp"
         android:src="@drawable/girl"
         />
 
@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:text="LOGIN"
             android:textColor="@color/blue"
@@ -53,17 +53,18 @@
         <EditText
             android:id="@+id/email"
             android:layout_width="match_parent"
-            android:padding="10dp"
-            android:textColor="@color/blue"
-            android:elevation="5dp"
-
-            android:layout_height="40dp"
+            android:layout_height="48dp"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="10dp"
+
             android:layout_marginRight="25dp"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/inputs"
+            android:elevation="5dp"
             android:inputType="textEmailAddress"
-            android:background="@drawable/inputs" />
+            android:padding="10dp"
+            android:textColor="@color/blue"
+            tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -77,7 +78,7 @@
 
 
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="48dp"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_marginTop="10dp"
@@ -107,7 +108,8 @@
                 android:paddingBottom="10dp"
                 android:textColor="@color/blue"
                 android:textSize="20sp"
-                app:textInputLayoutFocusedRectEnabled="false" />
+                app:textInputLayoutFocusedRectEnabled="false"
+                tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>
         <CheckBox
             android:id="@+id/remember"
@@ -119,21 +121,21 @@
             android:textStyle="bold"
             android:textSize="17sp"
             />
+
         <Button
             android:id="@+id/loginBtn"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="48dp"
             android:layout_marginLeft="25dp"
-            android:layout_marginTop="10dp"
+
             android:layout_marginRight="25dp"
             android:layout_marginBottom="10dp"
-            android:text="LOGIN"
+            android:background="@drawable/round_back_pink"
             android:elevation="20dp"
-            android:textColor="@color/white"
+            android:text="LOGIN"
             android:textAlignment="center"
-            android:textSize="20dp"
-            android:background="@drawable/buttons"
-            />
+            android:textColor="@color/white"
+            android:textSize="20dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -142,7 +144,7 @@
             android:layout_marginRight="24dp"
             android:text="Forgot Password?"
 
-            android:textColor="@color/white"
+            android:textColor="@color/blue"
             android:textSize="16dp"
             android:textStyle="bold" />
 
@@ -150,10 +152,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="10dp"
+
             android:padding="5dp"
             android:text="Or Via"
-            android:textColor="@color/white"
+            android:textColor="#FBFFFF"
             android:textSize="16dp"
             android:textStyle="bold" />
         <TextView
@@ -163,15 +165,15 @@
             android:background="@drawable/line"/>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_gravity="center"
             android:gravity="center"
             android:orientation="horizontal">
 
             <ImageButton
                 android:id="@+id/google"
-                android:layout_width="45sp"
-                android:layout_height="45sp"
+                android:layout_width="35sp"
+                android:layout_height="35sp"
                 android:layout_margin="10dp"
                 android:adjustViewBounds="true"
                 android:background="@drawable/btn"
@@ -182,8 +184,8 @@
 
             <ImageButton
                 android:id="@+id/fb"
-                android:layout_width="45sp"
-                android:layout_height="45sp"
+                android:layout_width="35sp"
+                android:layout_height="35sp"
                 android:layout_margin="10dp"
                 android:adjustViewBounds="true"
                 android:background="@drawable/btn"
@@ -197,13 +199,13 @@
         <TextView
             android:id="@+id/sign"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:padding="5dp"
             android:text="Need an account? SIGN UP"
             android:textColor="@color/white"
-            android:textSize="15dp"
+            android:textSize="17dp"
             android:textStyle="bold" />
     </LinearLayout>
 </LinearLayout>

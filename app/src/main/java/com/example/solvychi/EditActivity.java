@@ -79,8 +79,11 @@ public class EditActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent in = new Intent(EditActivity.this, QuizActivity.class);
-                startActivity(in);
+                Intent backToHome = new Intent(getApplicationContext() ,QuizActivity.class);
+                Bundle B = new Bundle();
+                B.putString("email", getIntent().getStringExtra("email"));
+                backToHome.putExtras(B);
+                startActivity(backToHome);
 
 
             }

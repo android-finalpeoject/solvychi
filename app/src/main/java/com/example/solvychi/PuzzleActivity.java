@@ -75,8 +75,11 @@ public class PuzzleActivity extends AppCompatActivity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-                startActivity(new Intent(PuzzleActivity.this, QuizActivity.class));
-                finish();
+                Intent backToHome = new Intent(getApplicationContext() ,QuizActivity.class);
+                Bundle B = new Bundle();
+                B.putString("email", getIntent().getStringExtra("email"));
+                backToHome.putExtras(B);
+                startActivity(backToHome);
             }
         });
     }
