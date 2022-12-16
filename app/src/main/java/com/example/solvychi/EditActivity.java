@@ -12,10 +12,12 @@ import android.widget.Toast;
 
 public class EditActivity extends AppCompatActivity {
     private ImageView backbtn1;
-    private EditText inputusername ,inputchangemail,inputchangepassword;
+    private EditText inputusername ,inputchangepassword;
     private AppCompatButton update;
     DBHelper DB;
     String changeusernamee,changemaill,changepasswordd;
+    private final String type = "edited";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +25,6 @@ public class EditActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         backbtn1 = findViewById(R.id.backBtnn);
         inputusername = findViewById(R.id.inputusername);
-        inputchangemail = findViewById(R.id.inputchangemail);
         inputchangepassword = findViewById(R.id.inputchangepassword);
         DB = new DBHelper(this);
         Bundle B = new Bundle();
@@ -40,23 +41,40 @@ public class EditActivity extends AppCompatActivity {
         // setting data to edit text
         // of our update activity.
         inputusername.setText(changeusernamee);
-        inputchangemail.setText(changemaill);
         inputchangepassword.setText(changepasswordd);
-        update.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        try {
 
-                DB.updateProfile(changemaill,inputusername.getText().toString(), inputchangemail.getText().toString(), inputchangepassword.getText().toString());
 
-                // displaying a toast message that our course has been updated.
-                Toast.makeText(EditActivity.this, "Profile Updated ✅", Toast.LENGTH_SHORT).show();
+            update.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
-                // launching our main activity.
-                Intent i = new Intent(EditActivity.this, QuizActivity.class);
-                startActivity(i);
+                    DB.updateProfile(changemaill, inputusername.getText().toString(), inputchangepassword.getText().toString());
 
-            }
-        });
+                    // displaying a toast message that our course has been updated.
+                    Toast.makeText(EditActivity.this, "Profile Updated ✅", Toast.LENGTH_SHORT).show();
+
+                    // launching our main activity.
+
+                    Bundle B = new Bundle();
+
+                    B.putString("email", changemaill);
+
+                    B.putString("type", type);
+                    B.putString("pwd",inputchangepassword.getText().toString());
+
+                    Intent io = new Intent(EditActivity.this, QuizActivity.class);
+                        io.putExtras(B);
+                    startActivity(io);
+
+                }
+
+
+            });
+        }catch(Exception e){
+
+            Toast.makeText(EditActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
         backbtn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

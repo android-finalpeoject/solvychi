@@ -22,7 +22,7 @@ public class QuizActivity extends AppCompatActivity {
     private String selectedLevelName;
 
     private TextView user, level;
-    private String userName,pwd,gender, levelUser;
+    private String userName,pwd,gender, levelUser,emailchanged;
     public String email;
     private ImageView logout;
     private TextView editprofil;
@@ -43,7 +43,7 @@ public class QuizActivity extends AppCompatActivity {
         level =findViewById(R.id.level_user);
 
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // ---------------get user data from sign up/login---------
 
         user = findViewById(R.id.Nom_user);
@@ -51,6 +51,7 @@ public class QuizActivity extends AppCompatActivity {
         String  ActivityType = userData.getString("type");
         email = userData.getString("email");
         pwd = userData.getString("pwd");
+        emailchanged = userData.getString("emailchanged");
 
         //=============================== CREATE LEVELS USING ADAPTER===========================
         ListView levels = (ListView) findViewById(R.id.levels);
@@ -80,7 +81,14 @@ public class QuizActivity extends AppCompatActivity {
 //         try{
 
         DBHelper db = new DBHelper(this);
-        if( ActivityType.equals("signUp"))
+        if( ActivityType.equals("edited"))
+        {
+            userName = db.fetchUser(email);
+            gender = db.fetchGender(email);
+            user.setText(userName);
+            choosePDP(pdp,gender);
+        }
+        else if( ActivityType.equals("signUp"))
         {
             gender = userData.getString("gender");
             userName = userData.getString("name");
@@ -96,6 +104,7 @@ public class QuizActivity extends AppCompatActivity {
 
 
         }
+
         levelUser = db.fetchLevel(email);
         // ===============enable all the buttons of remaining levels===============
         int nbLevel= Integer.parseInt(levelUser);

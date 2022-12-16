@@ -65,34 +65,11 @@
             android:layout_marginBottom="10dp"
             android:inputType="textEmailSubject"
             android:background="@drawable/inputborder" />
-        <TextView
-            android:id="@+id/changemail"
-            android:layout_below="@id/inputusername"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:text="Email:"
-            android:textColor="#2997A6"
-            android:textStyle="bold"
-            android:textSize="20dp"/>
 
-        <EditText
-            android:layout_below="@+id/changemail"
-            android:id="@+id/inputchangemail"
-            android:layout_width="match_parent"
-            android:padding="10dp"
-            android:textColor="@color/blue"
-            android:elevation="5dp"
 
-            android:layout_height="40dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="25dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/inputborder" />
         <TextView
             android:id="@+id/changepassword"
-            android:layout_below="@id/inputchangemail"
+            android:layout_below="@id/inputusername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"

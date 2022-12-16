@@ -110,7 +110,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
     }
-    public void updateProfile(String origemail,String username, String email, String password
+    public void updateProfile(String origemail,String username, String password
     ) {
 
         // calling a method to get writable database.
@@ -120,12 +120,11 @@ public class DBHelper extends SQLiteOpenHelper {
         // on below line we are passing all values
         // along with its key and value pair.
         values.put("username", username);
-        values.put("email",email);
         values.put("password", password);
 
 
         // on below line we are calling a update method to update our database and passing our values.
-        // and we are comparing it with name of our course which is stored in original name variable.
+        // and we are comparing it with name of our user which is stored in original name variable.
         MyDB.update("users", values, "email=?", new String[]{origemail});
         MyDB.close();
     }
