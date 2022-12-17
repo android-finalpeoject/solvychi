@@ -101,6 +101,15 @@ public class DBHelper extends SQLiteOpenHelper {
             return cursor.getString(0);
         else return null;
     }
+    public String fetchPwd(String email)
+    {
+        SQLiteDatabase MyDB = this.getReadableDatabase();
+        Cursor cursor = MyDB.rawQuery("Select password from users where email =? ",new String[] {email});
+        cursor.moveToFirst();
+        if(cursor.getCount()>0)
+            return cursor.getString(0);
+        else return null;
+    }
     public boolean alterLevel(String email, String level)
     {
         SQLiteDatabase MyDB = this.getWritableDatabase();

@@ -10,7 +10,7 @@
     <ImageView
         android:id="@+id/girl"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="80dp"
         android:src="@drawable/girl"
 
         />
@@ -35,11 +35,11 @@
             android:textSize="25dp"
             android:textColor="@color/blue"
             android:text="Sign Up"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"
-
-            android:textStyle="bold"
             android:layout_marginBottom="10dp"
+            android:textStyle="bold"
+
 
             />
         <TextView
@@ -53,13 +53,13 @@
         <EditText
             android:id="@+id/name"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="48dp"
             android:padding="10dp"
             android:textColor="@color/blue"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:elevation="7dp"
             android:background="@drawable/inputs"/>
         <TextView
@@ -77,11 +77,11 @@
             android:textColor="@color/blue"
             android:elevation="7dp"
 
-            android:layout_height="40dp"
+            android:layout_height="48dp"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:background="@drawable/inputs"
             android:inputType="textEmailAddress"/>
         <TextView
@@ -95,11 +95,11 @@
 
 
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="48dp"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:paddingLeft="5dp"
            android:elevation="7dp"
             app:hintEnabled="false"
@@ -147,7 +147,7 @@
                   android:backgroundTint="#3DAFBE"
                   android:spinnerMode="dropdown"
                   android:textColor="@color/blue"
-                  android:layout_marginTop="10dp"
+                  android:layout_marginTop="5dp"
                   android:layout_marginBottom="10dp"
 
                   android:elevation="20dp"
@@ -164,14 +164,14 @@
             android:layout_height="45dp"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:text="SIGN UP"
             android:textSize="20dp"
             android:paddingTop="2dp"
             android:textColor="@color/white"
             android:textAlignment="center"
-            android:background="@drawable/buttons"
+            android:background="@drawable/round_back_pink"
             android:elevation="7dp"
 
             />
@@ -179,11 +179,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16dp"
-            android:textColor="@color/white"
-            android:text="Or Via"
+            android:textColor="@color/blue"
+            android:text="Or "
             android:padding="5dp"
             android:textStyle="bold"
-            android:layout_margin="5dp"
+
             android:layout_gravity="center"
             />
         <TextView
@@ -191,42 +191,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@drawable/line"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center"
-            android:gravity="center"
-            >
-            <ImageButton
-                android:id="@+id/google"
-                android:layout_width="45sp"
-                android:layout_height="45sp"
-                android:background="@drawable/btn"
 
-                android:src="@drawable/ggl"
-                android:adjustViewBounds="true"
-                android:scaleType="centerInside"
-
-                android:layout_margin="10dp"
-                />
-            <ImageButton
-                android:id="@+id/fb"
-                android:layout_width="45sp"
-                android:layout_height="45sp"
-                android:background="@drawable/btn"
-                android:src="@drawable/fb"
-                android:adjustViewBounds="true"
-                android:scaleType="centerInside"
-                android:layout_margin="10dp"
-
-                />
-
-        </LinearLayout>
         <TextView
             android:id="@+id/login"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:textSize="17dp"
             android:textColor="@color/white"
             android:text="Already a user? LOGIN"

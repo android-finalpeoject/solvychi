@@ -41,8 +41,9 @@ public class QuizResults extends AppCompatActivity {
                 public void onClick(View view) {
 
                              Intent backToHome = new Intent(QuizResults.this ,QuizActivity.class);
-//                             backToHome.putExtra("result", true);
-
+                                Bundle B = new Bundle();
+                                B.putString("email", getIntent().getStringExtra("email"));
+                                backToHome.putExtras(B);
                                 startActivity(backToHome);
 
 
@@ -65,7 +66,11 @@ public class QuizResults extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(QuizResults.this ,QuizActivity.class));
+        Intent backToHome = new Intent(QuizResults.this ,QuizActivity.class);
+        Bundle B = new Bundle();
+        B.putString("email", getIntent().getStringExtra("email"));
+        backToHome.putExtras(B);
+        startActivity(backToHome);
 
     }
 }

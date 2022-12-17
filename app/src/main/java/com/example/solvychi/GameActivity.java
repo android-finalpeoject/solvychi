@@ -82,8 +82,11 @@ public class GameActivity extends AppCompatActivity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-                startActivity(new Intent(GameActivity.this, QuizActivity.class));
-                finish();
+                Intent backToHome = new Intent(getApplicationContext() ,QuizActivity.class);
+                Bundle B = new Bundle();
+                B.putString("email", getIntent().getStringExtra("email"));
+                backToHome.putExtras(B);
+                startActivity(backToHome);
             }
         });
 
@@ -121,29 +124,37 @@ public class GameActivity extends AppCompatActivity {
         textView.setFocusable(true);
         textView.setTextSize(32);
 
+        int maxPresCounter = quizList.get(currentQuestionPosition).getMaxCounter();
 
         textView.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view) {
-                int maxPresCounter = quizList.get(currentQuestionPosition).getMaxCounter();
-                if(presCounter < maxPresCounter)
-                {
-                    if(presCounter == 0)
-                        userAnswer.setText("");
 
-                    userAnswer.setText(userAnswer.getText().toString()+text);
-                    textView.startAnimation(smallbigforth);
-                    textView.animate().alpha(0).setDuration(300);
-                    presCounter++;
-                    if( presCounter == maxPresCounter)
-                        doValidate();
+               try{
+                   if(presCounter < maxPresCounter)
+                   {
+                       if(presCounter == 0) {
+                           userAnswer.setText("");
+                       }
 
-                }
+                       userAnswer.setText(userAnswer.getText().toString()+text);
+                       textView.startAnimation(smallbigforth);
+                       textView.animate().alpha(0).setDuration(300);
+                       presCounter++;
+
+
+
+
+                   } if( presCounter == maxPresCounter)
+                       doValidate();
+               }catch(Exception e){
+                   Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT);
+               }
             }
         });
-        viewParent.addView(textView);
 
+        viewParent.addView(textView);
 
 
 

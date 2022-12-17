@@ -234,8 +234,12 @@ public class questionActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
 
-        startActivity(new Intent(getApplicationContext() , QuizActivity.class));
-        finish();
+        Intent backToHome = new Intent(getApplicationContext() ,QuizActivity.class);
+        Bundle B = new Bundle();
+        B.putString("email", getIntent().getStringExtra("email"));
+        backToHome.putExtras(B);
+        startActivity(backToHome);
+
     }
     private void revealAnswer(){
         final String getAnswer = questionsLists.get(currentQuestionPosition).getAnswer();

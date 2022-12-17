@@ -48,10 +48,12 @@ public class QuizActivity extends AppCompatActivity {
 
         user = findViewById(R.id.Nom_user);
         Bundle userData = getIntent().getExtras();
-        String  ActivityType = userData.getString("type");
+        String  ActivityType ="" ;
         email = userData.getString("email");
-        pwd = userData.getString("pwd");
-        emailchanged = userData.getString("emailchanged");
+        if(userData.getString("type")!=null) ActivityType=userData.getString("type");
+        if(userData.getString("emailchanged")!=null)  emailchanged = userData.getString("emailchanged");;
+
+
 
         //=============================== CREATE LEVELS USING ADAPTER===========================
         ListView levels = (ListView) findViewById(R.id.levels);
@@ -64,17 +66,6 @@ public class QuizActivity extends AppCompatActivity {
         level [] levelsArray ={level1,level2,level3,level4};
         int itemTemplateFile = R.layout.level_item;
 
-        // get buttons of list view
-
-//           for (int i=0;i<4;i++)
-//           {
-//               level current = levelsArray[0];
-//               View row =(View) adapter.getViewByPosition(i,levels);
-//               AppCompatButton levelBtn= (AppCompatButton) row.findViewById(R.id.btnlevel);
-//
-//               Btns.add(levelBtn);
-//
-//           }
 
         //=============== DB get user===========
 
@@ -85,6 +76,7 @@ public class QuizActivity extends AppCompatActivity {
         {
             userName = db.fetchUser(email);
             gender = db.fetchGender(email);
+
             user.setText(userName);
             choosePDP(pdp,gender);
         }
@@ -92,6 +84,7 @@ public class QuizActivity extends AppCompatActivity {
         {
             gender = userData.getString("gender");
             userName = userData.getString("name");
+
             user.setText(userName);
             choosePDP(pdp,gender);
         }
@@ -100,19 +93,23 @@ public class QuizActivity extends AppCompatActivity {
             userName = db.fetchUser(email);
             gender = db.fetchGender(email);
             user.setText(userName);
+
             choosePDP(pdp,gender);
 
 
         }
 
         levelUser = db.fetchLevel(email);
+        userName = db.fetchUser(email);
+        gender = db.fetchGender(email);
+        pwd = db.fetchPwd(email);
+
+        user.setText(userName);
         // ===============enable all the buttons of remaining levels===============
         int nbLevel= Integer.parseInt(levelUser);
         LevelsAdapter adapter = new LevelsAdapter(QuizActivity.this,itemTemplateFile,levelsArray,email,nbLevel);
         levels.setAdapter(adapter);
-
-
-        //===================edit profile======================================================
+ //===================edit profile======================================================
         editprofil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
