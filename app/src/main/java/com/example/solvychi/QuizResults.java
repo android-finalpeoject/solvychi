@@ -21,16 +21,16 @@ public class QuizResults extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_results);
         getSupportActionBar().hide();
-        final AppCompatButton startnewBtn = findViewById(R.id.btnstartnext);
-        final TextView correctAnswer = findViewById(R.id.correctAnswers);
+         AppCompatButton startnewBtn = findViewById(R.id.btnstartnext);
+         TextView correctAnswer = findViewById(R.id.correctAnswers);
          TextView updated = (TextView) findViewById(R.id.up);
 
-        final TextView incorrectAnswer = findViewById(R.id.incorrectAnswers);
-        final ImageView back = findViewById(R.id.backBtn);
-        final int getCorrectAnsewrs = getIntent().getIntExtra("correct",0);
-        final String email = getIntent().getStringExtra("email");
+         TextView incorrectAnswer = findViewById(R.id.incorrectAnswers);
+         ImageView back = findViewById(R.id.backBtn);
+         int getCorrectAnsewrs = getIntent().getIntExtra("correct",0);
+         String email = getIntent().getStringExtra("email");
 
-        final int getIncorrectAnsewrs = getIntent().getIntExtra("incorrect",0);
+         int getIncorrectAnsewrs = getIntent().getIntExtra("incorrect",0);
         correctAnswer.setText("Correct answers :"+String.valueOf(getCorrectAnsewrs));
         incorrectAnswer.setText("Incorrect answers:"+String.valueOf(getIncorrectAnsewrs));
 //        updated.setText("updated:"+getIntent().getBooleanExtra("updated",false));
@@ -46,7 +46,7 @@ public class QuizResults extends AppCompatActivity {
                                 startActivity(backToHome);
 
 
-//                    finish();
+                   finish();
 
                 }
             });

@@ -135,8 +135,8 @@ public class questionActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
 
-                    onBackPressed();
-
+                    startActivity(new Intent(questionActivity.this , QuizActivity.class));
+                    finish();
                 }
             });
             //====================change level value=========================
